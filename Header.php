@@ -106,7 +106,10 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<form action="https://google.com/search" method="get" target="_blank">
+                            <input type="hidden" name="sitesearch" value="http://quablu.com" />
+                            <input type="text" name="q" />
+                            </form>
 						</div>
 					</div>
 				</div>
