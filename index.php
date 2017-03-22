@@ -111,7 +111,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<h1><span>Hot</span>IndDeals Save Money</h1>
 									<h2>Save your Money by getting exclusive deals</h2>
 									<p>Checkout all the latest exclusive deals which will help you save lots of money on your online shopping. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/home/slider1.jpg" class="girl img-responsive" alt="" />
@@ -123,7 +123,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<h1><span>Best </span>Online Deals</h1>
 									<h2>Latest Trending Online Shopping deals at one Place</h2>
 									<p>Get all the Latest Trending and Hottest online shopping deals form your all ecommerce websites all at one place only. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/home/slider2.jpg" class="girl img-responsive" alt="" />
@@ -136,7 +136,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<h1><span>Hot </span>Latest Offers</h1>
 									<h2>Latest Online Shopping Offers at one destinations</h2>
 									<p>Your ultimate deals destination save money by checking out these deals and discount code</p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
