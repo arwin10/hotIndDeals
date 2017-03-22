@@ -1,3 +1,7 @@
+<?php 
+    include 'Connections/config.php'; 
+	include 'Connections/opendb.php';
+?>
  <?php
 
 if (!function_exists("GetSQLValueString")) {
@@ -34,17 +38,12 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
 
-
-			  // Establish Connection with Database
-              $shop = mysql_connect("localhost","root","admin");
-              // Select Database
-             mysql_select_db("shopping", $shop);
              $query_Recordset3 = sprintf("SELECT ItemName,Itemid,`Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
              $Recordset3= mysql_query($query_Recordset3, $shop) or die(mysql_error());
              $row_Recordset3 = mysql_fetch_assoc($Recordset3);
              $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 
-			mysql_select_db($database_shop, $shop); 
+	
 			$query_Recordset4 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where LatestPrd='Y'";
 			$Recordset4 = mysql_query($query_Recordset4, $shop) or die(mysql_error());
 			$row_Recordset4 = mysql_fetch_assoc($Recordset4);
@@ -107,7 +106,6 @@ if (isset($_GET['CategoryId'])) {
         
            ?>
             <?php
-            // Close the connection
-            mysql_close($shop);
+            include 'Connections/closedb.php';
             ?>			 		   
 		   

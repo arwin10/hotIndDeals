@@ -1,3 +1,8 @@
+<?php 
+    include 'Connections/config.php'; 
+	include 'Connections/opendb.php';
+?>
+
 <?php
 
 if (!function_exists("GetSQLValueString")) {
@@ -33,18 +38,12 @@ $colname_Recordset1 = "-1";
 if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
-
-
-			  // Establish Connection with Database
-              $shop = mysql_connect("localhost","root","admin");
-              // Select Database
-              mysql_select_db("hotinddeals_db", $shop);
+             
 			 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
 			 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 			 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 			 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
-
-             mysql_select_db($database_shop, $shop);
+			 
              $query_Recordset2 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where FeaturedPrd='Y'";
              $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
              $row_Recordset2 = mysql_fetch_assoc($Recordset2);
@@ -141,6 +140,5 @@ if (isset($_GET['CategoryId'])) {
 			  
 			 
            <?php
-            // Close the connection
-            mysql_close($shop);
+           include 'Connections/closedb.php';
             ?>			 

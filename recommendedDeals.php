@@ -4,6 +4,12 @@ if(!isset($_SESSION))
 session_start();
 }
 ?>
+
+<?php 
+    include 'Connections/config.php'; 
+	include 'Connections/opendb.php';
+?>
+
 <?php
 
 if (!function_exists("GetSQLValueString")) {
@@ -40,19 +46,13 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset2 = $_GET['CategoryId'];
 }
 
-
-			  // Establish Connection with Database
-              $shop1 = mysql_connect("localhost","root","admin");
-              // Select Database
-             mysql_select_db("shopping", $shop1);
              $query_Recordset3 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset2, "int"));
-             $Recordset3= mysql_query($query_Recordset3, $shop1) or die(mysql_error());
+             $Recordset3= mysql_query($query_Recordset3, $shop) or die(mysql_error());
              $row_Recordset3 = mysql_fetch_assoc($Recordset3);
              $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 
-			mysql_select_db($database_shop, $shop1); 
 			$query_Recordset4 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master";
-			$Recordset4 = mysql_query($query_Recordset4, $shop1) or die(mysql_error());
+			$Recordset4 = mysql_query($query_Recordset4, $shop) or die(mysql_error());
 			$row_Recordset4 = mysql_fetch_assoc($Recordset4);
 			$totalRows_Recordset4 = mysql_num_rows($Recordset4);
 
@@ -120,7 +120,6 @@ if (isset($_GET['CategoryId'])) {
         
          ?>
 		 
-		 <?php
-            // Close the connection
-            mysql_close($shop1);
+		  <?php
+           include 'Connections/closedb.php';
             ?>			 

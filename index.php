@@ -4,7 +4,12 @@ if(!isset($_SESSION))
 session_start();
 }
 ?>
-<?php  require_once('Connections/shop.php'); ?>
+
+<?php 
+    include 'Connections/config.php'; 
+	include 'Connections/opendb.php';
+?>
+
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -39,19 +44,19 @@ $colname_Recordset1 = "-1";
 if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
-mysql_select_db($database_shop, $shop);
+
 $query_Recordset1 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
-mysql_select_db($database_shop, $shop);
+
 $query_Recordset2 = "SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total FROM item_master where FeaturedPrd='Y'";
 $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
 $row_Recordset2 = mysql_fetch_assoc($Recordset2);
 $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 
-mysql_select_db($database_shop, $shop);
+
 $query_Recordset5 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where PromotedPrd='Y'";
 $Recordset5 = mysql_query($query_Recordset5, $shop) or die(mysql_error());
 $row_Recordset5 = mysql_fetch_assoc($Recordset5);
@@ -562,6 +567,8 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	
 	<!-- Footer -->
 	<?php include "Footer.php" ?>
+	
+		
   
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -571,3 +578,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <script src="js/main.js"></script>
 </body>
 </html>
+
+<?php
+     include 'Connections/closedb.php';
+?>
