@@ -44,7 +44,7 @@ if (isset($_GET['CategoryId'])) {
 			 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 			 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 			 
-             $query_Recordset2 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where FeaturedPrd='Y'";
+             $query_Recordset2 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where FeaturedPrd='Y' and AvalibiltyStatus='Y'";
              $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
              $row_Recordset2 = mysql_fetch_assoc($Recordset2);
              $totalRows_Recordset2 = mysql_num_rows($Recordset2);

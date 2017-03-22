@@ -45,19 +45,19 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
 
-$query_Recordset1 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
+$query_Recordset1 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
 
-$query_Recordset2 = "SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total FROM item_master where FeaturedPrd='Y'";
+$query_Recordset2 = "SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total FROM item_master where FeaturedPrd='Y' and AvalibiltyStatus='Y'";
 $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
 $row_Recordset2 = mysql_fetch_assoc($Recordset2);
 $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 
 
-$query_Recordset5 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where PromotedPrd='Y'";
+$query_Recordset5 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where PromotedPrd='Y' and AvalibiltyStatus='Y'";
 $Recordset5 = mysql_query($query_Recordset5, $shop) or die(mysql_error());
 $row_Recordset5 = mysql_fetch_assoc($Recordset5);
 $totalRows_Recordset5 = mysql_num_rows($Recordset5);
@@ -568,7 +568,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	<!-- Footer -->
 	<?php include "Footer.php" ?>
 	
-		
+
   
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -579,6 +579,3 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 </body>
 </html>
 
-<?php
-     include 'Connections/closedb.php';
-?>

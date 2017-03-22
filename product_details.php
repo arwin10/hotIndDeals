@@ -42,30 +42,30 @@ $colname_Recordset1 = "-1";
 if (isset($_GET['ItemId'])) {
   $colname_Recordset1 = $_GET['ItemId'];
   
-  $query_Recordset6 = sprintf("SELECT * FROM item_master WHERE ItemId = %s", GetSQLValueString($colname_Recordset1, "int"));
+  $query_Recordset6 = sprintf("SELECT * FROM item_master WHERE ItemId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
   $Recordset6 = mysql_query($query_Recordset6, $shop) or die(mysql_error());
   $row_Recordset6 = mysql_fetch_assoc($Recordset6);
 }
 
-$query_Recordset1 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
+$query_Recordset1 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
 
-$query_Recordset2 = "SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master";
+$query_Recordset2 = "SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master where AvalibiltyStatus='Y'";
 $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
 $row_Recordset2 = mysql_fetch_assoc($Recordset2);
 $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 
 
-$query_Recordset3 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
+$query_Recordset3 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
 $Recordset3 = mysql_query($query_Recordset3, $shop) or die(mysql_error());
 $row_Recordset3 = mysql_fetch_assoc($Recordset3);
 $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 
 
-$query_Recordset4 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
+$query_Recordset4 = sprintf("SELECT ItemName, `Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
 $Recordset4 = mysql_query($query_Recordset4, $shop) or die(mysql_error());
 $row_Recordset4 = mysql_fetch_assoc($Recordset4);
 $totalRows_Recordset4 = mysql_num_rows($Recordset4);
@@ -337,7 +337,3 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
     <script src="js/main.js"></script>
 </body>
 </html>
-
- <?php
-    include 'Connections/closedb.php';
- ?>	
