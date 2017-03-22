@@ -1,15 +1,11 @@
 <?php 
     include 'Connections/config.php'; 
 	include 'Connections/opendb.php';
-
 ?>
 <?php
-              // Establish Connection with Database
-              //$shop = mysql_connect("localhost","root","admin");
-              // Select Database
-              //mysql_select_db($database_shop, $shop);
+			  
               // Specify the query to execute
-              $sql = "select * from Category_Master";
+              $sql = "select * from Category_Master where ActiveStatus='Y'";
               // Execute query
               $result = mysql_query($sql,$shop);
               // Loop through each records 

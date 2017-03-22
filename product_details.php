@@ -187,7 +187,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2><?php echo $row_Recordset6['ItemName']; ?> </h2>
-								<h5><?php echo $row_Recordset6['Description']; ?> </h3>
+								<h5><b><?php echo $row_Recordset6['Description']; ?></b></h3>
 								<p>Deal ID: <?php echo $row_Recordset6['ItemId'];?></p>
 								<img src="images/product-details/rating.png" alt="" />
 								    </br>
@@ -280,7 +280,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 										<li><a href=""><i class="fa fa-clock-o"></i><?php echo $row_Recordset6['ReleaseTime']; ?></a></li>
 										<li><a href=""><i class="fa fa-calendar-o"></i><?php echo $row_Recordset6['ReleaseDate']; ?></a></li>
 									</ul>
-									<p><?php echo $row_Recordset6['ItemsFullDescription'];?></p>
+									<p><b><?php echo $row_Recordset6['ItemsFullDescription'];?></b></p>
 									<p><b>Deal Link</b></p>
 									
 									<form action="<?php echo $row_Recordset6['DealLink']; ?>" target="_blank">
