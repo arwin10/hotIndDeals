@@ -10,9 +10,9 @@
  $password_shop = "6423989b";
 
 /********************Dev DB Details ********************************/
-/* $hostname_shop = "localhost";
-$database_shop = "hotinddeals_db";
-$username_shop = "root";
-$password_shop = "admin"; */
+// $hostname_shop = "localhost";
+// $database_shop = "hotinddeals_db";
+// $username_shop = "root";
+// $password_shop = "admin";
 
 ?>

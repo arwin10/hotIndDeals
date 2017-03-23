@@ -138,7 +138,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 						</div><!--/price-range-->
 						
 						<div class="shipping text-center"><!--shipping-->
-							<img src="images/home/latest-deals-offer-image.jpg" alt="" />
+						<a href="products.php"><img src="images/home/latest-deals-offer-image.jpg" alt="" /></a>
 						</div><!--/shipping-->
 						
 					</div>
