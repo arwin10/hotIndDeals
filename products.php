@@ -46,6 +46,13 @@ if (isset($_GET['CategoryId'])) {
   $row_Recordset6 = mysql_fetch_assoc($Recordset6);
 }
 
+if (isset($_GET['PopStoreId'])) {
+  $colname_Recordset2 = $_GET['PopStoreId'];
+  $query_Recordset7 = sprintf("SELECT ItemName,ItemId,CategoryId,DealWebsite,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE StoreId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset2, "int"));
+  $Recordset7 = mysql_query($query_Recordset7, $shop) or die(mysql_error());
+  $row_Recordset7 = mysql_fetch_assoc($Recordset7);
+}
+
 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -64,7 +71,7 @@ $row_Recordset3 = mysql_fetch_assoc($Recordset3);
 $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 
 
-$query_Recordset4 ="SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master where AvalibiltyStatus='Y'";
+$query_Recordset4 ="SELECT ItemName,ItemId,CategoryId,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master where AvalibiltyStatus='Y'";
 $Recordset4 = mysql_query($query_Recordset4, $shop) or die(mysql_error());
 $row_Recordset4 = mysql_fetch_assoc($Recordset4);
 $totalRows_Recordset4 = mysql_num_rows($Recordset4);
@@ -129,13 +136,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 							<h2>Popular Store</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Amazon</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>FlipKart</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Paytm</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>Snapdeal</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Jabong</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Myntra</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Shopclues</a></li>
+									<?php include 'popularstoreslist.php' ?>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -144,7 +145,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 							<h2>Price Range</h2>
 							<div class="well">
 								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b>$ 0</b> <b class="pull-right">$ 600</b>
+								 <b>Rs.0</b> <b class="pull-right">Rs.600</b>
 							</div>
 						</div><!--/price-range-->
 						
@@ -164,7 +165,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	       if(isset($_GET['CategoryId']))
 	       { 
 	       do 
-	       { 
+	       {  
 	      ?>
 			
 			<div class="col-sm-4">
@@ -195,6 +196,41 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 			
           <?php } while ($row_Recordset3 = mysql_fetch_assoc($Recordset3));
 		 }
+		  elseif(isset($_GET['PopStoreId']))
+	       { echo '<h3>'.$row_Recordset7['DealWebsite'].'</h3>';
+	       do 
+	       { 
+	      ?>
+			
+			<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="Products/<?php echo $row_Recordset7['Image']; ?>" alt="" />
+										<h2>Rs. <?php echo $row_Recordset7['Total']; ?></h2>
+										<p><?php echo $row_Recordset7['ItemName']; ?></p>
+										<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>Rs. <?php echo $row_Recordset7['Total']; ?></h2>
+											<p><?php echo $row_Recordset7['ItemName']; ?></p>
+											<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+										</div>
+									</div>
+								</div>
+								<div class="choose" style="display:none">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+			
+          <?php } while ($row_Recordset7 = mysql_fetch_assoc($Recordset7));
+		 }
+		 
 		 else
 		 { 
 		  do 
@@ -207,13 +243,13 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 										<img src="Products/<?php echo $row_Recordset4['Image']; ?>" alt="" />
 										<h2>Rs. <?php echo $row_Recordset4['Total']; ?></h2>
 										<p><?php echo $row_Recordset4['ItemName']; ?></p>
-										<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+										<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h2>Rs. <?php echo $row_Recordset4['Total']; ?></h2>
 											<p><?php echo $row_Recordset4['ItemName']; ?></p>
-											<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+											<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div>
 								</div>
@@ -227,7 +263,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 						</div>
            <?php } while ($row_Recordset4 = mysql_fetch_assoc($Recordset4));
 		 }
-        
+          
          ?>
 						
 						<ul class="pagination" style="display:none">

@@ -39,7 +39,7 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
              
-			 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset1, "int"));
+			 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
 			 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 			 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 			 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
