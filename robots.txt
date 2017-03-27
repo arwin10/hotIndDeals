@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /Admin
+Disallow: /Products
+Disallow: /images
+Disallow: /Connections
+Disallow: /js
+Disallow: /vendor
