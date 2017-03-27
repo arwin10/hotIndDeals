@@ -86,8 +86,8 @@
 						<div class="single-widget">
 							<h2>Help</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">FAQ’s</a></li>
+								<li><a href="contact-us.php">Contact Us</a></li>
+								<li><a href="#" style="display:none">FAQ’s</a></li>
 							</ul>
 						</div>
 					</div>
@@ -95,9 +95,7 @@
 						<div class="single-widget">
 							<h2>Quick Deals</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Electronics</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Recharge</a></li>
+								<?php include 'quickDeals.php' ?>
 							</ul>
 						</div>
 					</div>
@@ -105,7 +103,7 @@
 						<div class="single-widget">
 							<h2>Policies</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#" style="display:none">Terms of Use</a></li>
 								<li><a href="#">Privacy Policy</a></li>
 							</ul>
 						</div>
@@ -114,8 +112,8 @@
 						<div class="single-widget">
 							<h2>About HotIndDeals</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
+								<li><a href="#" style="display:none">Company Information</a></li>
+								<li><a href="#" style="display:none">Careers</a></li>
 								<li><a href="#">Copyright</a></li>
 							</ul>
 						</div>
@@ -123,8 +121,9 @@
 					<div class="col-sm-3 col-sm-offset-1">
 						<div class="single-widget">
 							<h2>About HotIndDeals</h2>
-							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
+							<form action="https://google.com/search" method="get" target="_blank" class="searchform">
+							    <input type="hidden" name="sitesearch" value="https://hotinddeals.herokuapp.com" />
+								<input type="text" name="q" placeholder="Your search keywords.." />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
 								<p>Find any deals quickly <br />search here...</p>
 							</form>

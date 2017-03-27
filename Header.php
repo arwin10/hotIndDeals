@@ -107,7 +107,7 @@
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
 							<form action="https://google.com/search" method="get" target="_blank">
-                            <input type="hidden" name="sitesearch" value="http://quablu.com" />
+                            <input type="hidden" name="sitesearch" value="https://hotinddeals.herokuapp.com" />
                             <input type="text" name="q" />
                             </form>
 						</div>
