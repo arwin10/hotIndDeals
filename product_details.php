@@ -277,13 +277,15 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 									<p><b><?php echo $row_Recordset6['ItemsFullDescription'];?></b></p>
 									<p><b>Deal Link</b></p>
 									
-									<form action="<?php echo $row_Recordset6['DealLink']; ?>" target="_blank">
-										<span>
-											<a href="<?php echo $row_Recordset6['DealLink']; ?>" target="_blank"><?php echo $row_Recordset6['DealLink']; ?></a>
-											<input type="text" style="color: black; font-size: 20px; background-color: #fe980f" placeholder="<?php echo $row_Recordset6['DealWebsite']; ?>" readonly />
-										</span>
-										<textarea name="deal_Details" style="color: black; font-size: 20px; background-color: #fe980f" readonly><?php echo $row_Recordset6['DealDescription'];?></textarea>
+										
 										<!--<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />-->
+									<form action="<?php echo $row_Recordset6['DealLink']; ?>" target="_blank">
+									
+									  <span>
+											<a href="<?php echo $row_Recordset6['DealLink']; ?>" target="_blank"><?php echo $row_Recordset6['DealLink']; ?></a>
+											<input type="text" style="color: black; font-size: 15px; background-color: ##e6e6ff" placeholder="<?php echo $row_Recordset6['DealWebsite']; ?>" readonly />
+										</span>
+										<textarea name="deal_Details" rows="100" cols="60" style="color: black; font-size: 17px; background-color: ##e6e6ff" readonly><?php echo $row_Recordset6['DealDescription'];?></textarea>
 										<button type="submit" class="btn btn-default pull-right">
 											Buy Now
 										</button>
