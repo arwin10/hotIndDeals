@@ -79,7 +79,6 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
-	<script src="https://dealslooter.pushify.com/script.js?category=58da27d3fcf797160ce849b5"></script>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -559,12 +558,24 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 				</div>
 			</div>
 		</div>
+		
+		<div id='notifyvisitorstag'></div>
+       <script>
+      (function(n,o,t,i,f,y) {
+      n[i] = function() { (n[i].q = n[i].q || []).push(arguments) }; n[i].l = new Date;
+      n[t] = {}; n[t].auth = { bid_e : '5DBE698DB470DEED473F41E789A57BA8', bid : '5058', t : '420'};
+      n[t].async = false;
+      (y = o.createElement('script')).type = 'text/javascript';
+      y.src = "//cdn.notifyvisitors.com/js/notify-visitors-1.0.js";  
+      (f = o.getElementsByTagName('script')[0]).parentNode.insertBefore(y, f);
+      })(window, document, 'notify_visitors', 'nv');
+      </script
 	</section>
 	
 	<!-- Footer -->
 	<?php include "Footer.php" ?>
-	
-
+	  
+  
   
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
