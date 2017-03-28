@@ -79,6 +79,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	<script src="https://dealslooter.pushify.com/script.js?category=58da27d3fcf797160ce849b5"></script>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
