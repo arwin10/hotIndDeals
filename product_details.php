@@ -78,7 +78,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Product Details | HotIndDeals</title>
+    <title>Product Details | DealsLooter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -190,7 +190,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 					                </br><b>MRP Rs.<?php echo $row_Recordset6['Price']; ?></b>
 									</br>
 									<label>Views:</label>
-									<input type="text" value="<?php echo $row_Recordset6['QuantityAvailable'];?>" readonly />
+									<label><?php echo $row_Recordset6['QuantityAvailable'];?></label>
 									</br>
 									<a href="<?php echo $row_Recordset6['DealLink']; ?>" target="_blank"><button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>

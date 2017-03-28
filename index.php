@@ -71,7 +71,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <meta name="description" content="">
     <meta name="author" content="">
 	<meta name="google-site-verification" content="1I-o-nLAzuP6ZiKI6lVTrijNJ_QcmeSgZBv6aCvneZM" />
-    <title>Home | HotIndDeals</title>
+    <title>Home | DealsLooter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
