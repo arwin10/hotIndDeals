@@ -68,10 +68,14 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Softech Enterprise">
+	<meta name="description" content="India's Online shopping community for Best Online Deals, Offers, Coupons. Get latest discounts & promo codes for all online shopping websites. Save more with FreekaaMaals.com"> 
+	<meta content='Online shopping, online shopping India, best deals, online deals, shopping deals, coupons, coupons india, discount offers, shopping online, shopping deals online' name='keywords'> 
+    <meta property="og:title" content="India's 1 Online shopping community for Best Online Deals, Offers, Coupons" /> 
+	<meta property="og:description" content="India's Online shopping community for Best Online Deals, Offers, Coupons. Get latest discounts & promo codes for all online shopping websites. Save more with FreekaaMaals.com" /> 
+	<meta property="og:type" content="deals" /> <meta property="og:url" content="http://freekaamaals.com/" />
 	<meta name="google-site-verification" content="1I-o-nLAzuP6ZiKI6lVTrijNJ_QcmeSgZBv6aCvneZM" />
-    <title>Home | DealsLooter</title>
+    <title>Home | DealsLooter India's Online shopping community for Best Online Deals, Offers, Coupons. Get latest discounts & promo codes for all online shopping websites. Save more with DealsLooter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
