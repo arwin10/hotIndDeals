@@ -1,19 +1,19 @@
-
+<?php 
+    include '../Connections/config.php'; 
+	include '../Connections/opendb.php';
+?>
 <div id="right-col">
     
 
     <div class="scroll">
-	<b>Add Products</b>
+	<b>Add Deals</b>
        <ul class="side">
            <?php
-// Establish Connection with Database
-$con = mysql_connect("localhost","root","admin");
-// Select Database
-mysql_select_db("shopping", $con);
+
 // Specify the query to execute
-$sql = "select * from Category_Master";
+$sql = "select * from Category_Master where ActiveStatus='Y'";
 // Execute query
-$result = mysql_query($sql,$con);
+$result = mysql_query($sql,$shop);
 // Loop through each records 
 while($row = mysql_fetch_array($result))
 {
@@ -27,8 +27,6 @@ $CategoryName=$row['CategoryName'];
     
     <?php
 	}
-// Close the connection
-mysql_close($con);
 ?>
     </ul>
     
@@ -39,4 +37,8 @@ mysql_close($con);
     </ul>
    
 </div>
+
+ <?php
+    include '../Connections/closedb.php';
+ ?>	
  

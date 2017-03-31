@@ -4,6 +4,11 @@ if(!isset($_SESSION))
 session_start();
 }
 ?>
+<?php 
+    include '../Connections/config.php'; 
+	include '../Connections/opendb.php';
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -46,6 +51,15 @@ session_start();
                   </label>
                   <span class="textfieldRequiredMsg">Enter Category.</span></span></td>
               </tr>
+			   <tr>
+                <td height="32" >Main Category Name:</td>
+                <td><span id="sprytextfield1">
+                  <label>
+                  <input type="text" name="txtMainName" id="txtMainName" minlength="5" maxlength="30" required />
+                  </label>
+                  <span class="textfieldRequiredMsg">Enter Main Category.</span></span></td>
+              </tr>
+			  
               <tr>
                 <td height="34">Description:</td>
                 <td><span id="sprytextarea1">
@@ -60,14 +74,36 @@ session_start();
                   <input type="file" name="txtFile" id="txtFile" required />
                 </label></td>
               </tr>
+			  
+			  <tr>
+			 <td>Active Status:</td>
+              <td><span id="sprydropdown1">
+                <select id="txtAvlStatus" name="txtAvlStatus">
+                  <option value="Y"selected>Yes</option>
+                  <option value="N">No</option>
+                  </select>
+				</td>
+             </tr> 
+			 
               <tr>
+			     </br>
                 <td>&nbsp;</td>
                 <td><label>
                   <input type="submit" name="button" id="button" value="Submit" />
                 </label></td>
               </tr>
 </table>
-        </form></td>
+        </form>
+<?php
+    include '../Connections/closedb.php';
+ ?>	
+ <?php 
+    include '../Connections/config.php'; 
+	include '../Connections/opendb.php';
+?>
+		
+		
+		</td>
       </tr>
       <tr>
         <td height="25" bgcolor="#003300"><span class="style10"><strong>Category List</strong></span></td>
@@ -77,31 +113,31 @@ session_start();
             <tr>
               <th height="32" bgcolor="#BDE0A8" class="style3"><div align="left" class="style9 style5"><strong>Id</strong></div></th>
               <th bgcolor="#BDE0A8" class="style3"><div align="left" class="style9 style5"><strong>Category Name</strong></div></th>
+			  <th bgcolor="#BDE0A8" class="style3"><div align="left" class="style9 style5"><strong>Main Category Name</strong></div></th>
               <th bgcolor="#BDE0A8" class="style3"><div align="left" class="style9 style5"><strong>Description</strong></div></th>
               <th bgcolor="#BDE0A8" class="style3"><div align="left" class="style9 style5"><strong>Edit</strong></div></th>
               <th bgcolor="#BDE0A8" class="style3"><div align="left" class="style12">Delete</div></th>
             </tr>
             <?php
-// Establish Connection with Database
-$con = mysql_connect("localhost","root","admin");
-// Select Database
-mysql_select_db("shopping", $con);
+
 // Specify the query to execute
 $sql = "select * from Category_Master";
 // Execute query
-$result = mysql_query($sql,$con);
+$result = mysql_query($sql,$shop);
 // Loop through each records 
 while($row = mysql_fetch_array($result))
 {
 $Id=$row['CategoryId'];
 $CategoryName=$row['CategoryName'];
+$MainCategoryName=$row['MainCategoryName'];
 $Description=$row['Description'];
 
 ?>
             <tr>
               <td class="style3"><div align="left" class="style9 style5"><strong><?php echo $Id;?></strong></div></td>
               <td class="style3"><div align="left" class="style9 style5"><strong><?php echo $CategoryName;?></strong></div></td>
-              <td class="style3"><div align="left" class="style9 style5"><strong><?php echo $Description;?></strong></div></td>
+			  <td class="style3"><div align="left" class="style9 style5"><strong><?php echo $MainCategoryName;?></strong></div></td>
+              <td class="style3"><div align="left" class="style9 style5"><strong><?php echo $Description;?></strong></div></td>		  
               <td class="style3"><div align="left" class="style9 style5"><strong><a href="EditCategory.php?CatId=<?php echo $Id;?>">Edit</a></strong></div></td>
               <td class="style3"><div align="left" class="style9 style5"><strong><a href="DeleteCategory.php?CatId=<?php echo $Id;?>">Delete</a></strong></div></td>
             </tr>
@@ -113,10 +149,7 @@ $records = mysql_num_rows($result);
             <tr>
               <td colspan="5" class="style3"><div align="left" class="style12"><?php echo "Total ".$records." Records"; ?> </div></td>
             </tr>
-            <?php
-// Close the connection
-mysql_close($con);
-?>
+
         </table></td>
       </tr>
     
@@ -139,6 +172,10 @@ mysql_close($con);
       </tr>-->
     </table>
     <p>&nbsp;</p>
+	 <?php
+    include '../Connections/closedb.php';
+ ?>
+	
 	<?php
 	  include "thumbslider.php";
     ?> 
@@ -150,11 +187,12 @@ mysql_close($con);
    <?php
  include "Footer.php";
  ?>
-</div>
+	
 <script type="text/javascript">
 <!--
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprytextarea1 = new Spry.Widget.ValidationTextarea("sprytextarea1");
+
 //-->
 </script>
 </body>

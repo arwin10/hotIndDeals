@@ -122,7 +122,7 @@
 						<div class="single-widget">
 							<h2>About HotIndDeals</h2>
 							<form action="https://google.com/search" method="get" target="_blank" class="searchform">
-							    <input type="hidden" name="sitesearch" value="https://hotinddeals.herokuapp.com" />
+							    <input type="hidden" name="sitesearch" value="https://dealslooter.in" />
 								<input type="text" name="q" placeholder="Your search keywords.." />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
 								<p>Find any deals quickly <br />search here...</p>

@@ -1,5 +1,5 @@
 <div id="title">
-    <h1><span style="color: #008000;">ARWINS E-Store Admin Management</span></h1>
+    <h1><span style="color: #008000;">DealsLooter Admin Management</span></h1>
   </div>
   <head>
  <link href="jsImgSlider/themes/1/js-image-slider.css" rel="stylesheet" type="text/css" />

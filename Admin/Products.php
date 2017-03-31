@@ -1,5 +1,7 @@
-<?php require_once('../Connections/shop.php'); ?>
-<?php require_once('../Connections/shop.php'); ?>
+<?php 
+    include '../Connections/config.php'; 
+	include '../Connections/opendb.php';
+?>
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -50,7 +52,7 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>QuBlu EStore</title>
+<title>Dealslooter Admin Management</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <style type="text/css">
@@ -102,7 +104,7 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
   
   <div id="content">
     <h2><span style="color:#003300"> Welcome Administrator </span></h2>
-	 <h3><span style="color:#003300"> Add Product(<?php echo $row_Recordset1['CategoryName']; ?>)</span></h3>
+	 <h3><span style="color:#003300"> Add Deals(<?php echo $row_Recordset1['CategoryName']; ?>)</span></h3>
     <table width="100%" height="364" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td bgcolor="#003300">&nbsp;</td>
@@ -119,6 +121,9 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
             </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
             <tr>
               <td height="66">*Description:</td>
               <td><span id="sprytextarea1">
@@ -148,6 +153,9 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 <span class="textfieldRequiredMsg">A value is required.</span></span>
 				</td>
             </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			  <tr>
               <td>Featured Product Enable:</td>
               <td><span id="sprytextfield2">
@@ -158,6 +166,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
               </tr>
 			  
+			 <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			 
 			  <tr>
               <td>Latest Product Enable:</td>
               <td><span id="sprytextfield2">
@@ -168,6 +178,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
               </tr>
 			  
+			 <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			 
 			  <tr>
               <td>Promoted Product Enable:</td>
               <td><span id="sprytextfield2">
@@ -178,6 +190,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
               </tr>
             
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			<tr>
 			<td>Availabilty Status:</td>
               <td><span id="sprytextfield2">
@@ -186,7 +200,9 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                   <option value="N">No</option>
                   </select>
 				</td>
-             </tr> 
+             </tr>
+
+            <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>			 
            
 		    <tr>			
 			<td>*Quantity Available:</td>
@@ -198,6 +214,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
             </tr>
             
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			<tr>			
 			<td>*Product full Description:</td>
               <td><span id="sprytextfield2">
@@ -207,6 +225,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
 				</td>
             </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
 			
 			<tr>
 			<td>*Brand:</td>
@@ -218,6 +238,9 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
             </tr>
 			
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			<tr>
 			<td>*Model no:</td>
               <td><span id="sprytextfield2">
@@ -228,15 +251,31 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
             </tr>
 			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			<tr>
 			<td>*Release Date:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtRelDate" id="txtRelDate" minlength="2" maxlength="30" required />
+                <input type="text"  name="txtRelDate" id="txtRelDate" minlength="2" maxlength="30" value="<?php echo date("Y-m-d");?>"required />
                 </label>
 				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
 				</td>
             </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
+			<tr>
+			<td>*Release Time:</td>
+              <td><span id="sprytextfield2">
+                <label>
+                <input type="text"  name="txtRelTime" id="txtRelTime" minlength="2" maxlength="30" value="<?php echo date("h:i:s");?>"required />
+                </label>
+				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
+				</td>
+            </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
 			
 			<tr>
 			<td>*Dimension:</td>
@@ -248,6 +287,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
             </tr>
 			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			<tr>
 			<td>*Display Size:</td>
               <td><span id="sprytextfield2">
@@ -258,6 +299,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 				</td>
             </tr>
 			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			<tr>
               <td height="66">*Product Features:</td>
               <td><span id="sprytextarea1">
@@ -266,6 +309,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 </label>
                 <span class="textareaRequiredMsg">A value is required.</span></span></td>
             </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
 			
 			<tr>
               <td height="66">*Product Reviews:</td>
@@ -276,6 +321,55 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 <span class="textareaRequiredMsg">A value is required.</span></span></td>
             </tr>
 			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
+			<tr>
+              <td height="66">*Deal Description:</td>
+              <td><span id="sprytextarea1">
+                <label>
+                <textarea name="txtDealDescp" id="txtDealDescp" cols="35" rows="3" minlength="10" maxlength="3000" required></textarea>
+                </label>
+                <span class="textareaRequiredMsg">A value is required.</span></span></td>
+            </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
+			<tr>
+			<td>*Deal Link:</td>
+              <td><span id="sprytextfield2">
+                <label>
+                <input type="text"  name="txtDealLink" id="txtDealLink" minlength="2" maxlength="300" required />
+				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
+                </label>
+				</td>
+            </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
+			<tr>
+			<td>*Deal Website:</td>
+              <td><span id="sprytextfield2">
+                <label>
+                <input type="text"  name="txtDealWebsite" id="txtDealWebsite" minlength="2" maxlength="100" required />
+				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
+                </label>
+				</td>
+            </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
+			<tr>
+			<td>*Deal Posted By:</td>
+              <td><span id="sprytextfield2">
+                <label>
+                <input type="text"  name="txtPostedBy" id="txtPostedBy" minlength="2" maxlength="50" required />
+				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
+                </label>
+				</td>
+            </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
 			<tr>
               <td>*Price:</td>
               <td><span id="sprytextfield3">
@@ -284,6 +378,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 </label>
                 <span class="textfieldRequiredMsg">A numerical value is required.</span></span></td>
             </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
 			
             <tr>
               <td>*Discount:</td>
@@ -294,6 +390,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 <span class="textfieldRequiredMsg">A numerical value is required.</span></span></td>
             </tr>
 			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
+			
             <tr>
               <td>Final Price:</td>
               <td><span id="sprytextfield5">
@@ -302,6 +400,8 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
             </tr>
+			
+			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
 			
             <tr>
               <td>&nbsp;</td>
@@ -316,6 +416,7 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 	</script>
         </td>
       </tr>
+	  	
       <tr>
         <td height="27" bgcolor="#003300">&nbsp;</td>
       </tr>
@@ -364,6 +465,10 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
       </tr>-->
     </table>
     <p>&nbsp;</p>
+	 <?php
+      include '../Connections/closedb.php';
+     ?>
+	
 	<?php
 	  include "thumbslider.php";
     ?> 
