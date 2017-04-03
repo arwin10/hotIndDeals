@@ -1,3 +1,8 @@
+<?php 
+    include '../Connections/config.php'; 
+	include '../Connections/opendb.php';
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -22,12 +27,19 @@
 	$PrdfullDesc=$_POST['txtfulldesc'];
 	$Brand=$_POST['txtBrand'];
 	$Modelno=$_POST['txtModel'];
-	$ReleaseDate=$_POST['txtRelDate'];
 	$Dimension=$_POST['txtDimension'];
+	
 	$DispSize=$_POST['txtDispSize'];
 	$PrdFeatures=$_POST['txtPrdFeatures'];
 	$PrdReviews=$_POST['txtPrdReviews'];
-	$
+	
+	$PostedBy=$_POST['txtPostedBy'];
+	$ReleaseDate=$_POST['txtRelDate'];
+	$ReleaseTime=$_POST['txtRelTime'];
+	$DealDescp=$_POST['txtDealDescp'];
+	$DealLink=$_POST['txtDealLink'];
+	$StoreId=$_POST['txtDealWebsite'];
+	$StoreName='@'.$_POST['txtStoreName'];
 	
 	$txtPrice=$_POST['txtPrice'];
 	$txtDiscount=$_POST['txtDiscount'];
@@ -41,22 +53,21 @@
 	$path2= $fileb['name'];
 	//echo $path2;
 	move_uploaded_file($fileb['tmp_name'], '../Products/'.$fileb['name']);
-	// Establish Connection with MYSQL
-	$con = mysql_connect ("localhost","root","admin");
-	// Select Database
-	mysql_select_db("shopping", $con);
+
 	// Specify the query to Insert Record
-	$sql = "insert into Item_Master	(CategoryId,ItemName,Description,Size,Image,PrdDescFile,Price,Discount,Total,FeaturedPrd,LatestPrd,PromotedPrd,AvalibiltyStatus,QuantityAvailable,ItemsFullDescription,Brand,ModelNo,ReleaseDate,PrdDimension,DisplaySize,PrdFeatures,PrdReviews) values(".$cmbCategory.",'".$txtName."','".$txtDesc."','".$txtSize."','".$path1."','".$path2."',".$txtPrice.",".$txtDiscount.",".$txtFinal.",'".$frdStatus."','".$LatestStatus."','".$PrmStatus."','".$AvlStatus."',".$QntAvl.",'".$PrdfullDesc."','".$Brand."','".$Modelno."','".$ReleaseDate."','".$Dimension."','".$DispSize."','".$PrdFeatures."','".$PrdReviews."')";
+	$sql = "insert into Item_Master	(CategoryId,ItemName,Description,Size,Image,PrdDescFile,Price,Discount,Total,FeaturedPrd,LatestPrd,PromotedPrd,AvalibiltyStatus,QuantityAvailable,ItemsFullDescription,Brand,ModelNo,ReleaseDate,DisplaySize,PrdFeatures,PrdReviews,PostedBy,ReleaseTime,DealDescription,DealLink,StoreId,PrdDimension,DealWebsite) values(".$cmbCategory.",'".$txtName."','".$txtDesc."','".$txtSize."','".$path1."','".$path2."',".$txtPrice.",".$txtDiscount.",".$txtFinal.",'".$frdStatus."','".$LatestStatus."','".$PrmStatus."','".$AvlStatus."',".$QntAvl.",'".$PrdfullDesc."','".$Brand."','".$Modelno."','".$ReleaseDate."','".$DispSize."','".$PrdFeatures."','".$PrdReviews."','".$PostedBy."','".$ReleaseTime."','".$DealDescp."','".$DealLink."',".$StoreId.",'".$Dimension."','".$StoreName."')";
 	// execute query
-	$status=mysql_query ($sql,$con) or die(mysql_error());
-	// Close The Connection
-	mysql_close ($con);
+	$status=mysql_query ($sql,$shop) or die(mysql_error());
+	
 	if($status==true)
 	echo '<script type="text/javascript">alert("Products Inserted Succesfully");window.location=\'Products.php?CategoryId='.$cmbCategory.'\';</script>';
     else
 	echo '<script type="text/javascript">alert("Products didnt Inserted Succesfully");window.location=\'Products.php?CategoryId='.$cmbCategory.'\';</script>';	
 	//header("location:Products.php?CategoryId=".$cmbCategory."")
 
+?>
+<?php
+   include '../Connections/closedb.php';
 ?>
 </body>
 </html>

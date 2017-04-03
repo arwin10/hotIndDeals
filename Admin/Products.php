@@ -37,18 +37,21 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset2 = $_GET['CategoryId'];
 }
 
-mysql_select_db($database_shop, $shop);
 $query_Recordset1 = "SELECT CategoryId, CategoryName FROM category_master where CategoryId='".$colname_Recordset2."'";
 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 
-
-mysql_select_db($database_shop, $shop);
 $query_Recordset2 = sprintf("SELECT ItemId, ItemName, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset2, "int"));
 $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
 $row_Recordset2 = mysql_fetch_assoc($Recordset2);
 $totalRows_Recordset2 = mysql_num_rows($Recordset2);
+
+$query_Recordset3 = "select * from popular_stores where StoreStatus='Y'";
+$Recordset3 = mysql_query($query_Recordset3, $shop) or die(mysql_error());
+$row_Recordset3 = mysql_fetch_assoc($Recordset3);
+$totalRows_Recordset3 = mysql_num_rows($Recordset3);
+
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -348,13 +351,15 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
 			
 			<tr>
 			<td>*Deal Website:</td>
-              <td><span id="sprytextfield2">
-                <label>
-                <input type="text"  name="txtDealWebsite" id="txtDealWebsite" minlength="2" maxlength="100" required />
-				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
-                </label>
+             <td><span id="sprytextfield2">
+                <select id="txtDealWebsite" name="txtDealWebsite" onchange="document.getElementById('txtStoreName').value=this.options[this.selectedIndex].text">
+				   <?php do { ?>
+                     <option value="<?php echo $row_Recordset3['StoreId'];?>"><?php echo $row_Recordset3['StoreName']; ?></option>           
+                    <?php } while ($row_Recordset3= mysql_fetch_assoc($Recordset3)); ?>
+                </select>
 				</td>
             </tr>
+			<input type="hidden" name="txtStoreName" id="txtStoreName" value="" />
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
 			
@@ -396,7 +401,7 @@ $totalRows_Recordset2 = mysql_num_rows($Recordset2);
               <td>Final Price:</td>
               <td><span id="sprytextfield5">
                 <label>
-                <input type="digits" class="txtFinal "name="txtFinal" id="txtFinal" readonly/>
+                <input type="digits" class="txtFinal "name="txtFinal" id="txtFinal"/>
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
             </tr>
