@@ -1,5 +1,5 @@
 User-agent: *
-Disallow: /Admin
+Disallow: /IndDealManagement
 Disallow: /Products
 Disallow: /images
 Disallow: /Connections
