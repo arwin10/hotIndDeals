@@ -3,9 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Contact | DealsLooter</title>
+    <meta name="author" content="arwin@Softech Enterprise">
+	<meta name="description" content="Find Easily Best Online Deals, Offers,discounts & promo codes for all online shopping websites & Save your Money with FreekaaMaals.com"> 
+	<meta content='best deals,best offers,top website for deals,loot deals,loot offers,loot coupons, loot,Online shopping, online shopping India, best deals, online deals, shopping deals, coupons, coupons india, discount offers, shopping online, shopping deals online,freekaamaals,freekaamaal' name='keywords'> 
+    <meta property="og:title" content="India's Best website for Best Online Deals, Offers, Coupons" /> 
+	<meta property="og:description" content="Find Easily Best Online Deals, Offers,discounts & promo codes for all online shopping websites & Save your Money with FreekaaMaals.com" /> 
+	<meta property="og:type" content="deals" /> <meta property="og:url" content="http://freekaamaals.com/" />
+    <title>Contact | FreekaaMaals.com</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
