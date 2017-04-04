@@ -93,7 +93,13 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3416750053765743",
+    enable_page_level_ads: true
+  });
+</script>
 <body>
 
   <!-- Header -->
