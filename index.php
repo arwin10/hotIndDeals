@@ -202,7 +202,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 						</div><!--/price-range-->
 						
 						<div class="shipping text-center"><!--shipping-->
-						<a href="products.php"><img src="images/home/latest-deals-offer-image.jpg" alt="" /></a>
+						<a href="https://goo.gl/l8FdQj" target="_blank"><img src="images/home/500x300.jpg" alt="" /></a>
 						</div><!--/shipping-->
 					
 					</div>
