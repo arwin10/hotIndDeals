@@ -39,6 +39,9 @@
 	    		<div class="col-sm-12">    			   			
 					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
 					<div id="gmap" class="contact-map">
+					
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1944.2518070815336!2d77.75056680806826!3d12.939593647719214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae0d85e4528c19%3A0xa724ce7008fb0e58!2sPrakash+Layout%2C+Varthur%2C+Bengaluru%2C+Karnataka+560087%2C+India!5e0!3m2!1sen!2s!4v1494419904195" width="1150" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+					
 					</div>
 				</div>			 		
 			</div>    	
