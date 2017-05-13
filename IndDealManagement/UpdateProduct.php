@@ -13,7 +13,8 @@
 
 <body>
 <?php
-
+    
+	$ItemId=$_GET['ItemId'];
 	$cmbCategory=$_GET['CategoryId'];
 	$txtName=$_POST['txtName'];
 	$txtDesc=$_POST['txtDesc'];
@@ -56,14 +57,14 @@
 	move_uploaded_file($fileb['tmp_name'], '../Products/'.$fileb['name']);
 
 	// Specify the query to Insert Record
-	$sql = "insert into Item_Master	(CategoryId,ItemName,Description,Size,Image,PrdDescFile,Price,Discount,Total,FeaturedPrd,LatestPrd,PromotedPrd,ItemCondtion,AvalibiltyStatus,QuantityAvailable,ItemsFullDescription,Brand,ModelNo,ReleaseDate,DisplaySize,PrdFeatures,PrdReviews,PostedBy,ReleaseTime,DealDescription,DealLink,StoreId,PrdDimension,DealWebsite) values(".$cmbCategory.",'".$txtName."','".$txtDesc."','".$txtSize."','".$path1."','".$path2."',".$txtPrice.",".$txtDiscount.",".$txtFinal.",'".$frdStatus."','".$LatestStatus."','".$PrmStatus."','".$ItemCondition."','".$AvlStatus."',".$QntAvl.",'".$PrdfullDesc."','".$Brand."','".$Modelno."','".$ReleaseDate."','".$DispSize."','".$PrdFeatures."','".$PrdReviews."','".$PostedBy."','".$ReleaseTime."','".$DealDescp."','".$DealLink."',".$StoreId.",'".$Dimension."','".$StoreName."')";
+	$sql = "update Item_Master set CategoryId=".$cmbCategory.",ItemName='".$txtName."',Description='".$txtDesc."',Size='".$txtSize."',Image='".$path1."',PrdDescFile='".$path2."',Price=".$txtPrice.",Discount=".$txtDiscount.",Total=".$txtFinal.",FeaturedPrd='".$frdStatus."',LatestPrd='".$LatestStatus."',PromotedPrd='".$PrmStatus."',ItemCondtion='".$ItemCondition."',AvalibiltyStatus='".$AvlStatus."',QuantityAvailable='".$QntAvl."',ItemsFullDescription='".$PrdfullDesc."',Brand='".$Brand."',ModelNo='".$Modelno."',ReleaseDate='".$ReleaseDate."',DisplaySize='".$DispSize."',PrdFeatures='".$PrdFeatures."',PrdReviews='".$PrdReviews."',PostedBy='".$PostedBy."',ReleaseTime='".$ReleaseTime."',DealDescription='".$DealDescp."',DealLink='".$DealLink."',StoreId=".$StoreId.",PrdDimension='".$Dimension."',DealWebsite='".$StoreName."' where ItemId=".$ItemId."";
 	// execute query
 	$status=mysql_query ($sql,$shop) or die(mysql_error());
 	
 	if($status==true)
-	echo '<script type="text/javascript">alert("Products Inserted Succesfully");window.location=\'Products.php?CategoryId='.$cmbCategory.'\';</script>';
+	echo '<script type="text/javascript">alert("Products Updated Succesfully");window.location=\'Products.php?CategoryId='.$cmbCategory.'\';</script>';
     else
-	echo '<script type="text/javascript">alert("Products didnt Inserted Succesfully");window.location=\'Products.php?CategoryId='.$cmbCategory.'\';</script>';	
+	echo '<script type="text/javascript">alert("Products didnt Updated Succesfully");window.location=\'Products.php?CategoryId='.$cmbCategory.'\';</script>';	
 	//header("location:Products.php?CategoryId=".$cmbCategory."")
 
 ?>

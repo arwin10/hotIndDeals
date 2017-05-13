@@ -200,6 +200,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 										<i class="fa fa-shopping-cart"></i>
 									Buy Now
 									</button></a>
+									<label><?php echo $row_Recordset6['DealWebsite']; ?></label>
 								</span>
 								<?php if($row_Recordset6['AvalibiltyStatus']=='Y') {?>
 								<p><b>Availability:</b> Deal Available</p>

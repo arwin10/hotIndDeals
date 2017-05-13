@@ -35,7 +35,7 @@
     <h2><span style="color:#003300"> Welcome Administrator </span></h2>
     <table width="100%" height="209" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td height="33" bgcolor="#003300"><span class="style10 style11 style12">Edit Record</span></td>
+        <td height="33" bgcolor="#003300"><span class="style10 style11 style12">Edit Category Details</span></td>
       </tr>
       <tr>
         <td><?php

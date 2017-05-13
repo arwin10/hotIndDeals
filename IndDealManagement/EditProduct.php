@@ -2,57 +2,14 @@
     include '../Connections/config.php'; 
 	include '../Connections/opendb.php';
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <?php
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
-
-$colname_Recordset2 = "-1";
-if (isset($_GET['CategoryId'])) {
-  $colname_Recordset2 = $_GET['CategoryId'];
-}
-
-$query_Recordset1 = "SELECT CategoryId, CategoryName FROM category_master where CategoryId='".$colname_Recordset2."'";
-$Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
-$row_Recordset1 = mysql_fetch_assoc($Recordset1);
-$totalRows_Recordset1 = mysql_num_rows($Recordset1);
-
-$query_Recordset2 = sprintf("SELECT ItemId,CategoryId,ItemName, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s", GetSQLValueString($colname_Recordset2, "int"));
-$Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
-$row_Recordset2 = mysql_fetch_assoc($Recordset2);
-$totalRows_Recordset2 = mysql_num_rows($Recordset2);
-
 $query_Recordset3 = "select * from popular_stores where StoreStatus='Y'";
 $Recordset3 = mysql_query($query_Recordset3, $shop) or die(mysql_error());
 $row_Recordset3 = mysql_fetch_assoc($Recordset3);
 $totalRows_Recordset3 = mysql_num_rows($Recordset3);
-
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Dealslooter Admin Management</title>
@@ -105,22 +62,69 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
   include "Header.php";
   ?>
   
-  <div id="content">
-    <h2><span style="color:#003300"> Welcome Administrator </span></h2>
-	 <h3><span style="color:#003300"> Add Deals(<?php echo $row_Recordset1['CategoryName']; ?>)</span></h3>
-    <table width="100%" height="364" border="0" cellpadding="0" cellspacing="0">
+    <?php
+    $Id=$_GET['ItemId'];
+    // Specify the query to execute
+    $sql = "select * from Item_Master where ItemId=".$Id."";
+    // Execute query
+    $result = mysql_query($sql,$shop);
+    // Loop through each records 
+    while($row = mysql_fetch_array($result))
+    {
+	$cmbCategory=$row['CategoryId'];
+	$txtName=$row['ItemName'];
+	$txtDesc=$row['Description'];
+	$txtSize=$row['Size'];
+	
+	$txtPrdImgFile=$row['Image'];
+	$txtPrdDescfile=$row['PrdDescFile'];
+	
+	$frdStatus=$row['FeaturedPrd'];
+	$LatestStatus=$row['LatestPrd'];
+	$PrmStatus=$row['PromotedPrd'];
+	$ItemCondition=$row['ItemCondtion'];
+	$AvlStatus=$row['AvalibiltyStatus'];
+	$QntAvl=$row['QuantityAvailable'];
+	$PrdfullDesc=$row['ItemsFullDescription'];
+	$Brand=$row['Brand'];
+	$Modelno=$row['ModelNo'];
+	$Dimension=$row['PrdDimension'];
+	
+	$DispSize=$row['DisplaySize'];
+	$PrdFeatures=$row['PrdFeatures'];
+	$PrdReviews=$row['PrdReviews'];
+	
+	$PostedBy=$row['PostedBy'];
+	$ReleaseDate=$row['ReleaseDate'];
+	$ReleaseTime=$row['ReleaseTime'];
+	$DealDescp=$row['DealDescription'];
+	$DealLink=$row['DealLink'];
+	$StoreId=$row['StoreId'];
+	$StoreName=$row['DealWebsite'];
+	
+	$txtPrice=$row['Price'];
+	$txtDiscount=$row['Discount'];
+	$txtFinal=$row['Total'];
+	} 
+	?>
+ 
+ <div id="content">
+   <h2><span style="color:#003300"> Welcome Administrator </span></h2>
+   <table width="100%" height="364" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+    <td height="33" bgcolor="#003300"><span class="style10 style11 style12">Edit Product Details</span></td>
+    </tr>
+
       <tr>
-        <td bgcolor="#003300">&nbsp;</td>
-      </tr>
-      <tr>
-        <td><form action="InsertProduct.php?CategoryId=<?php echo $_GET['CategoryId'];?>" method="post" enctype="multipart/form-data" name="form1" id="form2">
-          <table width="100%" height="301" border="0" cellpadding="0" cellspacing="0">
+       <td>
+	   <form action="UpdateProduct.php?ItemId=<?php echo $Id;?>&CategoryId=<?php echo $cmbCategory;?>" method="post" enctype="multipart/form-data" name="form1" id="form2">
+          <table width="100%" border="0">
             
             <tr>
               <td height="40">*Item Name:</td>
               <td><span id="sprytextfield1">
                 <label>
-                <input type="text" name="txtName" id="txtName" minlength="2" maxlength="100" required />
+                <input type="text" name="txtName" id="txtName" minlength="2" maxlength="100" value="<?php echo $txtName; ?>" required />
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
             </tr>
@@ -131,27 +135,30 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td height="66">*Description:</td>
               <td><span id="sprytextarea1">
                 <label>
-                <textarea name="txtDesc" id="txtDesc" cols="35" rows="3" minlength="10" maxlength="3000" required></textarea>
+                <textarea name="txtDesc" id="txtDesc" cols="35" rows="3" minlength="10" maxlength="3000" required><?php echo $txtDesc; ?></textarea>
                 </label>
                 <span class="textareaRequiredMsg">A value is required.</span></span></td>
             </tr>
+			
             <tr>
               <td>*Upload Image<br>(Max size:20Mb):</br></td>
               <td><label>
                 <input type="file" name="txtFile" id="txtFile" required />
-              </label></td>
+              </label><?php echo $txtPrdImgFile; ?></td>
             </tr>
-			<tr>
+			
+			<tr>		
             <td>Upload Product Description <br>File(Max Size 20Mb):</br></td>
               <td><label>
                 <input type="file" name="txtPrdFile" id="txtPrdFile" required /> 
-              </label></td>
+              </label><?php echo $txtPrdDescfile; ?></td>  
             </tr>
+			
             <tr>
               <td>*Value:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text" name="txtSize" id="txtSize" minlength="2" maxlength="20" required/>
+                <input type="text" name="txtSize" id="txtSize" minlength="2" maxlength="20" value="<?php echo $txtSize; ?>" required/>
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span>
 				</td>
@@ -163,8 +170,13 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td>Featured Product Enable:</td>
               <td><span id="sprytextfield2">
                 <select id="txtFrdPrd" name="txtFrdPrd">
-                  <option value="Y">Yes</option>
-                  <option value="N" selected>No</option>
+                  <?php if($frdStatus=='Y'){?>
+                  <option value="Y"selected>Yes</option>
+                  <option value="N">No</option>
+				<?php }else{?>
+				  <option value="Y">Yes</option>
+                  <option value="N"selected>No</option>
+				<?php }?> 
                   </select>
 				</td>
               </tr>
@@ -175,8 +187,13 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td>Latest Product Enable:</td>
               <td><span id="sprytextfield2">
                 <select id="txtLatPrd" name="txtLatPrd">
-                  <option value="Y" selected>Yes</option>
+                <?php if($LatestStatus=='Y'){?>
+                  <option value="Y"selected>Yes</option>
                   <option value="N">No</option>
+				<?php }else{?>
+				  <option value="Y">Yes</option>
+                  <option value="N"selected>No</option>
+				<?php }?> 
                   </select>
 				</td>
               </tr>
@@ -187,8 +204,13 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td>Promoted Product Enable:</td>
               <td><span id="sprytextfield2">
                 <select id="txtPrmPrd" name="txtPrmPrd">
-                  <option value="Y">Yes</option>
-                  <option value="N" selected>No</option>
+                  <?php if($PrmStatus=='Y'){?>
+                  <option value="Y"selected>Yes</option>
+                  <option value="N">No</option>
+				<?php }else{?>
+				  <option value="Y">Yes</option>
+                  <option value="N"selected>No</option>
+				<?php }?> 
                   </select>
 				</td>
               </tr>
@@ -199,24 +221,28 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>Availabilty Status:</td>
               <td><span id="sprytextfield2">
                 <select id="txtAvlStatus" name="txtAvlStatus">
+                 <?php if($AvlStatus=='Y'){?>
                   <option value="Y"selected>Yes</option>
                   <option value="N">No</option>
+				<?php }else{?>
+				  <option value="Y">Yes</option>
+                  <option value="N"selected>No</option>
+				<?php }?> 
                   </select>
 				</td>
              </tr>
 			 
-			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>			 
+			 <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>			 
            
 		    <tr>			
 			<td>*Item Condition:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input name="txtItemCond" id="txtItemCond" maxlength="5" required />
+                <input name="txtItemCond" id="txtItemCond" maxlength="5" value="<?php echo $ItemCondition;?>"required />
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
 				</td>
             </tr> 
-			 
 
             <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>			 
            
@@ -224,10 +250,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Quantity Available/Views:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="digits"  name="txtQntAvl" id="txtQntAvl" maxlength="5" required />
+                <input type="digits"  name="txtQntAvl" id="txtQntAvl" maxlength="5" value="<?php echo $QntAvl; ?>" required />
                 </label>
                 <span class="textfieldRequiredMsg">A numerical value is required.</span></span></td>
-				</td>
+				<td></td>
             </tr>
             
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -236,10 +262,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Product full Description:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <textarea name="txtfulldesc" id="txtfulldesc" cols="35" rows="3" minlength="10" maxlength="3000" required ></textarea>
+                <textarea name="txtfulldesc" id="txtfulldesc" cols="35" rows="3" minlength="10" maxlength="3000"  required ><?php echo $PrdfullDesc; ?></textarea>
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -248,10 +274,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Brand:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtBrand" id="txtBrand" minlength="2" maxlength="30" required />
+                <input type="text"  name="txtBrand" id="txtBrand" minlength="2" maxlength="30" value="<?php echo $Brand; ?>" required />
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
-				</td>
+				<td></td>
             </tr>
 			
 			
@@ -261,10 +287,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Model no:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtModel" id="txtModel" minlength="2" maxlength="30" required />
+                <input type="text"  name="txtModel" id="txtModel" minlength="2" maxlength="30" value="<?php echo $Modelno; ?>" required />
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -273,10 +299,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Release Date:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtRelDate" id="txtRelDate" minlength="2" maxlength="30" value="<?php echo date("Y-m-d");?>"required />
+                <input type="text"  name="txtRelDate" id="txtRelDate" minlength="2" maxlength="30" value="<?php echo date("Y-m-d");?>" required />
                 </label>
 				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -288,7 +314,7 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
                 <input type="text"  name="txtRelTime" id="txtRelTime" minlength="2" maxlength="30" value="<?php echo date("h:i:s");?>"required />
                 </label>
 				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -297,10 +323,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Dimension:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtDimension" id="txtDimension" minlength="2" maxlength="30" required />
+                <input type="text"  name="txtDimension" id="txtDimension" minlength="2" maxlength="30" value="<?php echo $Dimension; ?>" required />
                 </label>
 				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -309,10 +335,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Display Size:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtDispSize" id="txtDispSize" minlength="2" maxlength="30" required />
+                <input type="text"  name="txtDispSize" id="txtDispSize" minlength="2" maxlength="30" value="<?php echo $DispSize; ?>" required />
 				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
                 </label>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -321,7 +347,7 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td height="66">*Product Features:</td>
               <td><span id="sprytextarea1">
                 <label>
-                <textarea name="txtPrdFeatures" id="txtPrdFeatures" cols="35" rows="3" minlength="10" maxlength="3000" required></textarea>
+                <textarea name="txtPrdFeatures" id="txtPrdFeatures" cols="35" rows="3" minlength="10" maxlength="3000" required><?php echo $PrdFeatures; ?></textarea>
                 </label>
                 <span class="textareaRequiredMsg">A value is required.</span></span></td>
             </tr>
@@ -332,7 +358,7 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td height="66">*Product Reviews:</td>
               <td><span id="sprytextarea1">
                 <label>
-                <textarea name="txtPrdReviews" id="txtPrdReviews" cols="35" rows="3" minlength="10" maxlength="3000" required></textarea>
+                <textarea name="txtPrdReviews" id="txtPrdReviews" cols="35" rows="3" minlength="10" maxlength="3000" required><?php echo $PrdReviews; ?></textarea>
                 </label>
                 <span class="textareaRequiredMsg">A value is required.</span></span></td>
             </tr>
@@ -343,7 +369,7 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td height="66">*Deal Description:</td>
               <td><span id="sprytextarea1">
                 <label>
-                <textarea name="txtDealDescp" id="txtDealDescp" cols="35" rows="3" minlength="10" maxlength="3000" required></textarea>
+                <textarea name="txtDealDescp" id="txtDealDescp" cols="35" rows="3" minlength="10" maxlength="3000" required><?php echo $DealDescp; ?></textarea>
                 </label>
                 <span class="textareaRequiredMsg">A value is required.</span></span></td>
             </tr>
@@ -354,10 +380,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Deal Link:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtDealLink" id="txtDealLink" minlength="2" maxlength="300" required />
+                <input type="text"  name="txtDealLink" id="txtDealLink" minlength="2" maxlength="300" value="<?php echo $DealLink; ?>" required />
 				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
                 </label>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -367,20 +393,21 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
              <td><span id="sprytextfield2">
                 <select id="txtDealWebsite" name="txtDealWebsite" onchange="document.getElementById('txtStoreName').value=this.options[this.selectedIndex].text">
 				    <?php 
-				      $i=0; 
-				      do { if($i==0){
-				    ?>
-                      <option value="<?php echo $row_Recordset3['StoreId'];?>" selected><?php echo $row_Recordset3['StoreName']; ?></option>           
-                    <?php 
+				         do {  
+                          
+						  if(strpos($StoreName,$row_Recordset3['StoreName'])){
+							 
+				    ?>    
+                      <option value="<?php echo $row_Recordset3['StoreId'];?>" selected><?php echo $row_Recordset3['StoreName']; ?></option>           				  
+					<?php
 				     }
 					 else
 					 { 
 				    ?>
 					  <option value="<?php echo $row_Recordset3['StoreId'];?>"><?php echo $row_Recordset3['StoreName']; ?></option>           
 				    <?php
-					 }
-					 $i++;
-					} while ($row_Recordset3= mysql_fetch_assoc($Recordset3)); 
+					  }
+					 } while ($row_Recordset3= mysql_fetch_assoc($Recordset3)); 
 					?>
                 </select>
 				</td>
@@ -393,10 +420,10 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 			<td>*Deal Posted By:</td>
               <td><span id="sprytextfield2">
                 <label>
-                <input type="text"  name="txtPostedBy" id="txtPostedBy" minlength="2" maxlength="50" required />
+                <input type="text"  name="txtPostedBy" id="txtPostedBy" minlength="2" maxlength="50" value="<?php echo $PostedBy; ?>" required />
 				  <span class="textfieldRequiredMsg">A value is required.</span></span></td>
                 </label>
-				</td>
+				<td></td>
             </tr>
 			
 			<td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
@@ -405,7 +432,7 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td>*Price:</td>
               <td><span id="sprytextfield3">
                 <label>
-                <input type="digits" class="txtPrice" name="txtPrice" id="txtPrice"  maxlength="10" required />
+                <input type="digits" class="txtPrice" name="txtPrice" id="txtPrice"  maxlength="10" value="<?php echo $txtPrice; ?>" required />
                 </label>
                 <span class="textfieldRequiredMsg">A numerical value is required.</span></span></td>
             </tr>
@@ -416,7 +443,7 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td>*Discount:</td>
               <td><span id="sprytextfield4">
                 <label>
-                <input type="digits" class="txtDiscount" name="txtDiscount" id="txtDiscount" maxlength="10" required />
+                <input type="digits" class="txtDiscount" name="txtDiscount" id="txtDiscount" maxlength="10" value="<?php echo $txtDiscount; ?>" required />
                 </label>
                 <span class="textfieldRequiredMsg">A numerical value is required.</span></span></td>
             </tr>
@@ -427,7 +454,7 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
               <td>Final Price:</td>
               <td><span id="sprytextfield5">
                 <label>
-                <input type="digits" class="txtFinal "name="txtFinal" id="txtFinal"/>
+                <input type="digits" class="txtFinal "name="txtFinal" id="txtFinal" value="<?php echo $txtFinal; ?>" />
                 </label>
                 <span class="textfieldRequiredMsg">A value is required.</span></span></td>
             </tr>
@@ -437,54 +464,32 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
             <tr>
               <td>&nbsp;</td>
               <td><label>
-                <input type="submit" name="button" id="button" value="Submit" />
+                <input type="submit" name="button" id="button" value="Update" />
               </label></td>
             </tr>
           </table>
-      </form>
+        </form>
       <script>
-	   $("#form2").validate();
-	   </script>
-       </td>
-      </tr>
-	  	
-      <tr>
-        <td height="27" bgcolor="#003300">&nbsp;</td>
-      </tr>
-      <tr>
-        <td>&nbsp;
-          <table width="100%" border="1" cellpadding="2" cellspacing="2" bordercolor="#003300">
-            <tr>
-              <td bgcolor="#669900"><span class="style12">ItemId</span></td>
-              <td bgcolor="#669900"><span class="style12">ItemName</span></td>
-              <td bgcolor="#669900"><span class="style12">Size</span></td>
-              <td bgcolor="#669900"><span class="style12">Image</span></td>
-              <td bgcolor="#669900"><span class="style12">Price</span></td>
-              <td bgcolor="#669900"><span class="style12">Discount</span></td>
-              <td bgcolor="#669900"><span class="style12">Total</span></td>
-			  <td bgcolor="#669900"><span class="style12">Update</span></td>
-              <td bgcolor="#669900"><span class="style12">Delete</span></td>
-            </tr>
-            <?php do { 
-			  $Id=$row_Recordset2['ItemId']; 
-			  $ItemCategoryId=$row_Recordset2['CategoryId']; 
-			?>
-              <tr>
-                <td><?php echo $Id; ?></td>
-                <td><?php echo $row_Recordset2['ItemName']; ?></td>
-                <td><?php echo $row_Recordset2['Size']; ?></td>
-                <td><img src="../Products/<?php echo $row_Recordset2['Image']; ?>" height="125px" width="125px"/></td>
-                <td><?php echo $row_Recordset2['Price']; ?></td>
-                <td><?php echo $row_Recordset2['Discount']; ?></td>
-                <td><?php echo $row_Recordset2['Total']; ?></td>
-				<td class="style3"><div align="left" class="style9 style5"><strong><a href="EditProduct.php?ItemId=<?php echo $Id;?>">Edit</a></strong></div></td>
-                <td class="style3"><div align="left" class="style9 style5"><strong><a href="DeleteProduct.php?ItemId=<?php echo $Id;?>&CategoryId=<?php echo $ItemCategoryId;?>">Delete</a></strong></div></td>
-              </tr>
-              <?php } while ($row_Recordset2 = mysql_fetch_assoc($Recordset2)); ?>
-          </table></td>
-      </tr>
+	  $("#form2").validate();
+	  </script>
+     </td>
+    </tr>
+	 
+	 <tr>
+     <td height="27" bgcolor="#003300">&nbsp;</td>
+     </tr>
+     <tr>
+     <td>&nbsp;</td>
+     </tr>
+	 
     </table>
+<?php
+    include '../Connections/closedb.php';
+ ?>	
+            
+
     <p align="justify">&nbsp;</p>
+    <h2>&nbsp;</h2>
     <table width="100%" border="0" cellspacing="3" cellpadding="3">
       <tr>
         <td>&nbsp;</td>
@@ -503,10 +508,6 @@ $totalRows_Recordset3 = mysql_num_rows($Recordset3);
       </tr>-->
     </table>
     <p>&nbsp;</p>
-	 <?php
-      include '../Connections/closedb.php';
-     ?>
-	
 	<?php
 	  include "thumbslider.php";
     ?> 
@@ -531,8 +532,3 @@ var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5");
 </script>
 </body>
 </html>
-<?php
-mysql_free_result($Recordset1);
-
-mysql_free_result($Recordset2);
-?>

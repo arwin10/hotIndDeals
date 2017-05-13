@@ -119,7 +119,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 						<div class="carousel-inner">
 							<div class="item active">
 								<div class="col-sm-6">
-									<h1><span>Hot</span>IndDeals Save Money</h1>
+									<h1><span>Free</span>KaaMaals.com Save Money</h1>
 									<h2>Save your Money by getting exclusive deals</h2>
 									<p>Checkout all the latest exclusive deals which will help you save lots of money on your online shopping. </p>
 									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
@@ -202,7 +202,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 						</div><!--/price-range-->
 						
 						<div class="shipping text-center"><!--shipping-->
-						<a href="https://goo.gl/l8FdQj" target="_blank"><img src="images/home/500x300.jpg" alt="" /></a>
+						<a href="https://goo.gl/nIHYkz" target="_blank"><img src="images/home/big10sale.jpg" alt="" /></a>
 						</div><!--/shipping-->
 					
 					</div>
