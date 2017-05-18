@@ -93,6 +93,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -100,6 +101,15 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     enable_page_level_ads: true
   });
 </script>
+<script type="text/javascript">
+   $('.right recommended-item-control').click(function() {
+      event.preventDefault();
+      $('.col-sm-4').animate({
+        marginLeft: "-=200px"
+      }, "fast");
+   });
+ </script>
+
 <body>
 
   <!-- Header -->
@@ -211,8 +221,17 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Featured Deals</h2>
-						
-						<?php include "featuredDeals.php" ?>
+					    <div id="featured-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">	
+						    <?php include "featuredDeals.php" ?>
+							</div>
+							<a class="left recommended-item-control" href="#featured-item-carousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							  </a>
+							  <a class="right recommended-item-control" href="#featured-item-carousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							  </a>			
+						</div>	
 						
 					</div><!--features_items-->
 					
@@ -508,53 +527,8 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 						<h2 class="title text-center">Latest Deals</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">	
-									
-									<?php include "latestDeals.php" ?>
-									
-								</div>
-								<!--<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-								</div>-->
+							<div class="carousel-inner">	
+									<?php include "latestDeals.php" ?>				
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
 								<i class="fa fa-angle-left"></i>

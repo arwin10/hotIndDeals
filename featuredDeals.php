@@ -39,12 +39,12 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
              
-			 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
+			 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,DealWebsite FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
 			 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 			 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 			 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 			 
-             $query_Recordset2 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where FeaturedPrd='Y' and AvalibiltyStatus='Y'";
+             $query_Recordset2 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,DealWebsite FROM item_master where FeaturedPrd='Y' and AvalibiltyStatus='Y'";
              $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
              $row_Recordset2 = mysql_fetch_assoc($Recordset2);
              $totalRows_Recordset2 = mysql_num_rows($Recordset2);
@@ -52,7 +52,7 @@ if (isset($_GET['CategoryId'])) {
          ?>  
 	          <?php
 	          if(isset($_GET['CategoryId']))
-	          { $i=0;
+	          { 
 	           do 
 	           { 
 			  
@@ -74,6 +74,7 @@ if (isset($_GET['CategoryId'])) {
 										<div class="overlay-content">
 											<h2>Rs.<?php echo $row_Recordset1['Total'];?></h2>
 											<p><?php echo $row_Recordset1['ItemName']; ?></p>
+											<p><b><?php echo $row_Recordset1['DealWebsite']; ?></b></p>
 											<a href="product_details.php?ItemId=<?php echo $row_Recordset1['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div>
@@ -97,11 +98,19 @@ if (isset($_GET['CategoryId'])) {
 			  
 		     else
 		     { 
-		       $j=1;
-			   //settype($j, "integer"); 
+		       $fd_counter=1;
+		       $fd_deal_start=1;
+			   $fd_deal_end=1; 
 	           do 
 	           { 
-			  
+			        if($fd_counter==1){ echo '<div class="item active">';}
+					  
+					    if(($fd_deal_start+3)==$fd_counter){ echo '<div class="item">';
+						  $fd_deal_start=$fd_counter;
+						  $fd_deal_end=$fd_deal_start+2;		
+						}
+					
+			      
 			 ?>
 				
               
@@ -120,6 +129,7 @@ if (isset($_GET['CategoryId'])) {
 										<div class="overlay-content">
 											<h2>Rs.<?php echo $row_Recordset2['Total'];?></h2>
 											<p><?php echo $row_Recordset2['ItemName']; ?></p>
+											<p><b><?php echo $row_Recordset2['DealWebsite']; ?></b></p>
 											<a href="product_details.php?ItemId=<?php echo $row_Recordset2['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div>
@@ -135,7 +145,12 @@ if (isset($_GET['CategoryId'])) {
 						</div>
                 				
              <?php 
-		    
+		            if ($fd_counter==3){ echo '</div>';  
+					}
+				    if ($fd_deal_end==$fd_counter && $fd_counter!=1){ echo '</div>'; 
+					}     
+				    $fd_counter=$fd_counter+1;
+					
 			 } while ($row_Recordset2 = mysql_fetch_assoc($Recordset2));
 		   }
         

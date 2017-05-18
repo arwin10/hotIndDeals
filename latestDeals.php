@@ -38,13 +38,13 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
 
-             $query_Recordset3 = sprintf("SELECT ItemName,Itemid,`Description`, `Size`, Image, Price, Discount, Total FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
+             $query_Recordset3 = sprintf("SELECT ItemName,Itemid,`Description`, `Size`, Image, Price, Discount, Total,DealWebsite FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y'", GetSQLValueString($colname_Recordset1, "int"));
              $Recordset3= mysql_query($query_Recordset3, $shop) or die(mysql_error());
              $row_Recordset3 = mysql_fetch_assoc($Recordset3);
              $totalRows_Recordset3 = mysql_num_rows($Recordset3);
 
 	
-			$query_Recordset4 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total FROM item_master where LatestPrd='Y' and AvalibiltyStatus='Y'";
+			$query_Recordset4 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount,Total,DealWebsite FROM item_master where LatestPrd='Y' and AvalibiltyStatus='Y'";
 			$Recordset4 = mysql_query($query_Recordset4, $shop) or die(mysql_error());
 			$row_Recordset4 = mysql_fetch_assoc($Recordset4);
 			$totalRows_Recordset4 = mysql_num_rows($Recordset4);
@@ -64,7 +64,8 @@ if (isset($_GET['CategoryId'])) {
 												<div class="productinfo text-center">
 													<img src="Products/<?php echo $row_Recordset3['Image']; ?>" alt="" />
 													<h2>Rs.<?php echo $row_Recordset3['Total'];?></h2>
-													<p><?php echo $row_Recordset3['ItemName']; ?></p>
+													<p><?php echo $row_Recordset3['ItemName']; ?></p></br>
+													<p><b><?php echo $row_Recordset3['DealWebsite']; ?></b></p>
 													<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 												</div>
 												
@@ -75,32 +76,43 @@ if (isset($_GET['CategoryId'])) {
                <?php } while ($row_Recordset3 = mysql_fetch_assoc($Recordset3));
 		       }
 		       else
-		       {  $i=0;
+		       {  $counter=1;
+		          $deal_start=1;
+				  $deal_end=1;
 		         do 
 	             {  
-				   
-				if($i<9)
-				   {
+					   
+					   if($counter==1){ echo '<div class="item active">';}
+					  
+					    if(($deal_start+3)==$counter){ echo '<div class="item">';
+						  $deal_start=$counter;
+						  $deal_end=$deal_start+2;		
+						}
+					
+					  
 				?>
-             
+                
 				
 				<div class="col-sm-4">
 				   <div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
 								<img src="Products/<?php echo $row_Recordset4['Image']; ?>" alt="" />
-								<h2>Rs.<?php echo $row_Recordset4['Total'];?></h2>
+								<h2>Rs.<?php echo $row_Recordset4['Total']?></h2>
 								<p><?php echo $row_Recordset4['ItemName']; ?></p>
+								<p><b><?php echo $row_Recordset4['DealWebsite']; ?></b></p>
 								<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 						    </div>		
 						 </div>
 					</div>
 				</div>
 				
-           <?php	    
-				   } 		
-  
-				  $i=$i+1;
+              <?php	    
+				    if ($counter==3){ echo '</div>';  
+					}
+				       if ($deal_end==$counter && $counter!=1){ echo '</div>'; 
+					   }     
+				  $counter=$counter+1;
 		        } while ($row_Recordset4 = mysql_fetch_assoc($Recordset4));
 		   }
         
