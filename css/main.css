@@ -1040,7 +1040,15 @@ h2.title {
   margin-right:0;
 }
 
+#featured-item-carousel .carousel-inner .item {
+  padding-left: 0;
+}
+
 .recommended_items {
+  overflow: hidden;
+}
+
+.features_items {
   overflow: hidden;
 }
 
@@ -1065,6 +1073,9 @@ h2.title {
 }
 
 .recommended_items  h2 {
+}
+
+.features_items  h2 {
 }
 
 .our_partners{

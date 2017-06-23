@@ -306,12 +306,9 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-							<div class="item active"> 
+							
 									<?php include "recommendedDeals.php" ?>
-							</div>
-								<div class="item">	
-									<?php include "recommendedDeals2.php" ?>
-								</div>
+							
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
 								<i class="fa fa-angle-left"></i>

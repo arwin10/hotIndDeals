@@ -53,8 +53,31 @@ if (isset($_GET['CategoryId'])) {
 	          <?php
 	          if(isset($_GET['CategoryId']))
 	          { 
+	           $fd_counter=1;
+		       $fd_deal_start=1;
+			   $fd_deal_end=1; 
+			   $disp_counter=0;
+			
+			     if(($totalRows_Recordset2%3)==0)
+			     {$disp_counter=$totalRows_Recordset2;}
+		         else if(($totalRows_Recordset2%3)==1)
+			     {$disp_counter=$totalRows_Recordset2-1;	}
+		         else
+			    {$disp_counter=$totalRows_Recordset2-2;}
+			   
 	           do 
-	           { 
+	           {   
+			     
+				 if($fd_counter<=$disp_counter)
+			      {
+			        if($fd_counter==1){ echo '<div class="item active">';}
+					  
+					    if(($fd_deal_start+3)==$fd_counter){ echo '<div class="item">';
+						  $fd_deal_start=$fd_counter;
+						  $fd_deal_end=$fd_deal_start+2;		
+						}
+					
+			      
 			  
 			   ?>
 			    
@@ -90,7 +113,12 @@ if (isset($_GET['CategoryId'])) {
 						</div>
 			    
                <?php 
-			   
+			        if ($fd_counter==3){ echo '</div>';  
+					}
+				    if ($fd_deal_end==$fd_counter && $fd_counter!=1){ echo '</div>'; 
+					}     
+				    $fd_counter=$fd_counter+1;
+			   }	
 			  
 			   }while($row_Recordset1 = mysql_fetch_assoc($Recordset1));
 		       
@@ -101,8 +129,20 @@ if (isset($_GET['CategoryId'])) {
 		       $fd_counter=1;
 		       $fd_deal_start=1;
 			   $fd_deal_end=1; 
+			   $disp_counter=0;
+			
+			     if(($totalRows_Recordset2%3)==0)
+			     {$disp_counter=$totalRows_Recordset2;}
+		         else if(($totalRows_Recordset2%3)==1)
+			     {$disp_counter=$totalRows_Recordset2-1;	}
+		         else
+			    {$disp_counter=$totalRows_Recordset2-2;}
+			   
 	           do 
-	           { 
+	           {   
+			     
+				 if($fd_counter<=$disp_counter)
+			      {
 			        if($fd_counter==1){ echo '<div class="item active">';}
 					  
 					    if(($fd_deal_start+3)==$fd_counter){ echo '<div class="item">';
@@ -144,13 +184,13 @@ if (isset($_GET['CategoryId'])) {
 							</div>
 						</div>
                 				
-             <?php 
+               <?php 
 		            if ($fd_counter==3){ echo '</div>';  
 					}
 				    if ($fd_deal_end==$fd_counter && $fd_counter!=1){ echo '</div>'; 
 					}     
 				    $fd_counter=$fd_counter+1;
-					
+			   }	
 			 } while ($row_Recordset2 = mysql_fetch_assoc($Recordset2));
 		   }
         

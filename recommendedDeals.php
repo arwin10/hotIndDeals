@@ -62,11 +62,28 @@ if (isset($_GET['CategoryId'])) {
 <?php    
           
 	       if(isset($_GET['CategoryId']))
-	       { $i=0;
-	       do 
-	       { 
-		     if($i<3)
-			 {	      
+	       {  $rec_counter=1;
+		      $rec_deal_start=1;
+		      $rec_deal_end=1;
+			  $disp_counter=0;
+			
+			if(($totalRows_Recordset3%3)==0)
+			{$disp_counter=$totalRows_Recordset3;}
+		    else if(($totalRows_Recordset3%3)==1)
+			{$disp_counter=$totalRows_Recordset3-1;	}
+		    else
+			{$disp_counter=$totalRows_Recordset3-2;}
+			  
+	        do 
+	        { 
+		       if($rec_counter<=$disp_counter)
+			    {  
+		          if($rec_counter==1){ echo '<div class="item active">';}
+					  
+					    if(($rec_deal_start+3)==$rec_counter){ echo '<div class="item">';
+						  $rec_deal_start=$rec_counter;
+						  $rec_deal_end=$rec_deal_start+2;		
+						}	      
 		   ?>
 		    
 									
@@ -86,18 +103,41 @@ if (isset($_GET['CategoryId'])) {
 			
 			
 			
-          <?php 
-		   }
-		   $i=$i+1;
+             <?php 
+		          if ($rec_counter==3)
+				  { echo '</div>';  
+					}
+				  if ($rec_deal_end==$rec_counter && $rec_counter!=1)
+				  { echo '</div>'; 
+				  }     
+				  $rec_counter=$rec_counter+1;
+					
+			}		
 		  } while ($row_Recordset3 = mysql_fetch_assoc($Recordset3));
 		 }
 		 else
-		 { $i=0;
-	   
+		 { 
+	        $rec_counter=1;
+		    $rec_deal_start=1;
+		    $rec_deal_end=1;
+			$disp_counter=0;
+			
+			if(($totalRows_Recordset4%3)==0)
+			{$disp_counter=$totalRows_Recordset4;}
+		    else if(($totalRows_Recordset4%3)==1)
+			{$disp_counter=$totalRows_Recordset4-1;	}
+		    else
+			{$disp_counter=$totalRows_Recordset4-2;}
 		  do 
 	      {  
-		    if($i<3)
-			{
+	          if($rec_counter<=$disp_counter)
+			   {
+		          if($rec_counter==1){ echo '<div class="item active">';}
+					  
+					    if(($rec_deal_start+3)==$rec_counter){ echo '<div class="item">';
+						  $rec_deal_start=$rec_counter;
+						  $rec_deal_end=$rec_deal_start+2;		
+						}
 			?>         
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
@@ -112,9 +152,12 @@ if (isset($_GET['CategoryId'])) {
 										</div>
 									</div>
            <?php 
-
-		  }		   
-			$i=$i+1;
+		       if ($rec_counter==3){ echo '</div>';  
+					}
+				    if ($rec_deal_end==$rec_counter && $rec_counter!=1){ echo '</div>'; 
+					}     
+				    $rec_counter=$rec_counter+1;
+			  }
 		   } while ($row_Recordset4 = mysql_fetch_assoc($Recordset4) );
 		 }
         
