@@ -146,7 +146,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="Products/<?php echo $row_Recordset6['Image']; ?>" alt="" />
+								<img src="<?php echo $row_Recordset6['Image']; ?>" alt=""/>
 								<h3 style="display:none">ZOOM</h3>
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel" style="display:none">
@@ -189,7 +189,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 								<p>Deal ID: <?php echo $row_Recordset6['ItemId'];?></p>
 								<img src="images/product-details/rating.png" alt="" />
 								    </br>
-									<span><b>Rs.<?php echo $row_Recordset6['Total']; ?></b>(<?php echo round($row_Recordset6['Discount']/$row_Recordset6['Price']*100);?>%off)</span>
+									<span><b>Rs.<?php echo $row_Recordset6['Total']; ?></b>(<?php if($row_Recordset6['Price']!=0)echo round($row_Recordset6['Discount']/$row_Recordset6['Price']*100); else echo 0;?>%off)</span>
 									</br><b>Discount Rs.<?php echo $row_Recordset6['Discount']; ?></b>
 					                </br><b>MRP Rs.<?php echo $row_Recordset6['Price']; ?></b>
 									</br>

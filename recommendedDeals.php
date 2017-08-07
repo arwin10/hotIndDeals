@@ -91,7 +91,7 @@ if (isset($_GET['CategoryId'])) {
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="Products/<?php echo $row_Recordset3['Image']; ?>" alt="" />
+													<img src="<?php echo $row_Recordset3['Image']; ?>" alt="" />
 													<h2>Rs. <?php echo $row_Recordset3['Total']; ?></h2>
 													<p><?php echo $row_Recordset3['ItemName']; ?></p>
 													<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>"><button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</button></a>
@@ -143,7 +143,7 @@ if (isset($_GET['CategoryId'])) {
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="Products/<?php echo $row_Recordset4['Image']; ?>" alt="" />
+													<img src="<?php echo $row_Recordset4['Image']; ?>" alt="" />
 													<h2>Rs. <?php echo $row_Recordset4['Total']; ?></h2>
 													<p><?php echo $row_Recordset4['ItemName']; ?></p>
 													<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>"><button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</button></a>
