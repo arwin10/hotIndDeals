@@ -858,6 +858,10 @@ h2.title {
 .product-image-wrapper img{
 	height: 200px;
 	overflow:hidden;
+	 -webkit-backface-visibility: hidden; 
+    -ms-transform: translateZ(0); /* IE 9 */
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0);
 }
 
 .single-products {
@@ -1199,6 +1203,11 @@ h2.title {
   border: 1px solid #F7F7F0;
   height: 380px;
   width: 100%;
+   -webkit-backface-visibility: hidden; 
+    -ms-transform: translateZ(0); /* IE 9 */
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0);
+  
 }
 
 .view-product h3 {
