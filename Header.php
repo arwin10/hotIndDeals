@@ -13,9 +13,9 @@
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="https://www.facebook.com/freekaamaalsdotcom"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="https://twitter.com/FreekaaMaalscom"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="https://plus.google.com/u/0/communities/110323172554664516185"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="https://www.facebook.com/freekaamaalsdotcom" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://twitter.com/FreekaaMaalscom" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://plus.google.com/u/0/communities/110323172554664516185" target="_blank"><i class="fa fa-google-plus"></i></a></li>
 							</ul>
 						</div>
 					</div>
