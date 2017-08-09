@@ -81,7 +81,8 @@ if (isset($_GET['CategoryId'])) {
 					 
 	          ?>
 				
-				<div class="col-sm-4">
+				<div class="col-sm-4">  
+				                        
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
@@ -91,18 +92,18 @@ if (isset($_GET['CategoryId'])) {
 													<p><b><?php echo $row_Recordset3['DealWebsite']; ?></b></p>
 													<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 												</div>
-												
+											   <a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>">
 												 <div class="product-overlay">
 										          <div class="overlay-content">
 											       <h2>Rs.<?php echo $row_Recordset3['Total'];?></h2>
 											       <p><?php echo $row_Recordset3['ItemName']; ?></p>
 											       <p><b><?php echo $row_Recordset3['DealWebsite']; ?></b></p>
-											       <a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+											       <a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										          </div>
 							                     </div>
-												
+												</a>
 											</div>
-										</div>
+										</div>	
 									</div>
 			  
                 <?php 
@@ -144,6 +145,8 @@ if (isset($_GET['CategoryId'])) {
                 
 				
 				<div class="col-sm-4">
+				
+				  
 				   <div class="product-image-wrapper">
 						<div class="single-products">
 							<div class="productinfo text-center">
@@ -153,6 +156,7 @@ if (isset($_GET['CategoryId'])) {
 								<p><b><?php echo $row_Recordset4['DealWebsite']; ?></b></p>
 								<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 						    </div>
+						  <a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>">
                             <div class="product-overlay">
 										<div class="overlay-content">
 											<h2>Rs.<?php echo $row_Recordset4['Total'];?></h2>
@@ -161,9 +165,10 @@ if (isset($_GET['CategoryId'])) {
 											<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 							</div>
-							
+						  </a>	
 						 </div>
 					</div>
+					
 				</div>
 				
               <?php	    

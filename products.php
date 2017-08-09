@@ -181,13 +181,14 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 										<p><?php echo $row_Recordset3['ItemName']; ?></p>
 										<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 									</div>
+									<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>">
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h2>Rs. <?php echo $row_Recordset3['Total']; ?></h2>
 											<p><?php echo $row_Recordset3['ItemName']; ?></p>
 											<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
-									</div>
+									</div></a>
 								</div>
 								<div class="choose" style="display:none">
 									<ul class="nav nav-pills nav-justified">
@@ -215,6 +216,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 										<p><?php echo $row_Recordset7['ItemName']; ?></p>
 										<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 									</div>
+									<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>">
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h2>Rs. <?php echo $row_Recordset7['Total']; ?></h2>
@@ -222,6 +224,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 											<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div>
+									</a>
 								</div>
 								<div class="choose" style="display:none">
 									<ul class="nav nav-pills nav-justified">
@@ -249,6 +252,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 										<p><?php echo $row_Recordset4['ItemName']; ?></p>
 										<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 									</div>
+									<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>">
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h2>Rs. <?php echo $row_Recordset4['Total']; ?></h2>
@@ -256,6 +260,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 											<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div>
+									</a>
 								</div>
 								<div class="choose" style="display:none">
 									<ul class="nav nav-pills nav-justified">

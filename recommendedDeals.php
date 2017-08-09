@@ -88,6 +88,7 @@ if (isset($_GET['CategoryId'])) {
 		    
 									
 									<div class="col-sm-4">
+										<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
@@ -98,6 +99,7 @@ if (isset($_GET['CategoryId'])) {
 												</div>
 											</div>
 										</div>
+										</a>
 									</div>
 								
 			
@@ -140,6 +142,7 @@ if (isset($_GET['CategoryId'])) {
 						}
 			?>         
 									<div class="col-sm-4">
+									    <a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
@@ -150,6 +153,7 @@ if (isset($_GET['CategoryId'])) {
 												</div>
 											</div>
 										</div>
+										</a>
 									</div>
            <?php 
 		       if ($rec_counter==3){ echo '</div>';  
