@@ -9,7 +9,7 @@
     <meta property="og:title" content="India's Best website for Best Online Deals, Offers, Coupons" /> 
 	<meta property="og:description" content="Find Easily Best Online Deals, Offers,discounts & promo codes for all online shopping websites & Save your Money with FreekaaMaals.com" /> 
 	<meta property="og:type" content="deals" /> <meta property="og:url" content="http://freekaamaals.com/" />
-    <title>Contact | FreekaaMaals.com</title>
+    <title>Contact Us| FreekaaMaals.com</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">

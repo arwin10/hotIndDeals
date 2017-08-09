@@ -100,7 +100,7 @@
                                     </ul>
                                 </li> 
 								<li><a href="404.html" style="display:none">404</a></li>
-								<li><a href="contact-us.php">Contact</a></li>
+								<li><a href="contact-us.php">Contact Us</a></li>
 							</ul>
 						</div>
 					</div>
