@@ -184,8 +184,8 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
-									<img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-									<img src="images/home/icon1.jpg" class="pricing" alt="" />
+									<a href="https://paytm.com/shop/h/home"><img src="https://i.gadgets360cdn.com/large/paytmsale_main_1502190579196.jpg?output-quality=80" class="girl img-responsive" alt="" /></a>
+									<img src="images/home/icon1.jpg" class="pricing" alt="" style="display:none"/>
 								</div>
 							</div>
 							
