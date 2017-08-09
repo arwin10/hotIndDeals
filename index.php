@@ -69,6 +69,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="arwin@Softech Enterprise">
+	<meta name="google-site-verification" content="xOMCqEMVYXfQJG_hK15aDsPrHuwpXrAAuEfCe7hDQO0" />
 	<meta name="description" content="FreekaaMaals.com  All Online Deals,Offers,Coupons at one place. Get latest discounts & promo codes from the world of Ecommerce websites Save more with Freekaamaals.com(Only at Freekaamaal)"> 
 	<meta name='keywords' content='freekaamaal.com,freekaamaals.com,dealslooter,dealslooter.in,best deals,best offers,top website for deals,loot deals,loot offers,loot coupons, loot,Online shopping, online shopping India, best deals, online deals, shopping deals, coupons, coupons india, discount offers, shopping online, shopping deals online,freekaamaals,freekaamaal' >	
     <meta property="og:title" content="All Online Shopping Latest Deals,Offers,Coupons at one place." /> 
