@@ -185,7 +185,7 @@ $totalRows_Recordset4 = mysql_num_rows($Recordset4);
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2><?php echo $row_Recordset6['ItemName']; ?> </h2>
-								<h5><b><?php echo $row_Recordset6['Description']; ?></b></h3>
+								<h5><b><?php echo $row_Recordset6['DealWebsite']; ?></b></h3>
 								<p>Deal ID: <?php echo $row_Recordset6['ItemId'];?></p>
 								<img src="images/product-details/rating.png" alt="" />
 								    </br>
