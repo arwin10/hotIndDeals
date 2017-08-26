@@ -2,6 +2,7 @@
     include 'Connections/config.php'; 
 	include 'Connections/opendb.php';
 ?>
+
 <?php
 			  
               // Specify the query to execute

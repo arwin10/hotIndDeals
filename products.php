@@ -110,7 +110,18 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+     $(document).ready(function(){
+	  $(".pagination li:gt(10):not(:last-child)").hide();
+      $('.next').click(function(){
+      $("li:gt(10)").show();
+      });
+	 });
+    </script>
+
 </head><!--/head-->
+
 
 <body>
 
@@ -161,32 +172,42 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 				</div>
 				
 				<div class="col-sm-9 padding-right">
-					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Best Offers</h2>
-					
-						
-						<?php
+				
+									
+		  <?php
 	       if(isset($_GET['CategoryId']))
 	       { 
-	       do 
-	       {  
+	         echo "<div class='features_items'>";
+			 echo "<h2 class='title text-center'>Best Offers</h2>";
+	   
+	        //DB Connection
+			include 'Connections/opendb.php';
+         
+			$limit = 12;  
+            if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+            $start_from = ($page-1) * $limit;  
+  
+            $sql = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus FROM item_master where CategoryId='".$_GET['CategoryId']."' and AvalibiltyStatus='Y' ORDER BY item_master.ItemId DESC LIMIT ".$start_from.",".$limit;
+            $rs_result = mysql_query ($sql); 
+			
+	       while ($row = mysql_fetch_assoc($rs_result))  {
 	      ?>
 			
 			<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="<?php echo $row_Recordset3['Image']; ?>" alt=""   />
-										<h2>Rs. <?php echo $row_Recordset3['Total']; ?></h2>
-										<p><?php echo $row_Recordset3['ItemName']; ?></p>
-										<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+										<img src="<?php echo $row['Image']; ?>" alt=""   />
+										<h2>Rs. <?php echo $row['Total']; ?></h2>
+										<p><?php echo $row['ItemName']; ?></p>
+										<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 									</div>
-									<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>">
+									<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>">
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>Rs. <?php echo $row_Recordset3['Total']; ?></h2>
-											<p><?php echo $row_Recordset3['ItemName']; ?></p>
-											<a href="product_details.php?ItemId=<?php echo $row_Recordset3['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+											<h2>Rs. <?php echo $row['Total']; ?></h2>
+											<p><?php echo $row['ItemName']; ?></p>
+											<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $_GET['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div></a>
 								</div>
@@ -199,29 +220,80 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 							</div>
 						</div>
 			
-          <?php } while ($row_Recordset3 = mysql_fetch_assoc($Recordset3));
+          <?php }
+		  
+		  echo "</div><!--features_items-->";
+		  
+		  if(!isset($_GET['page']))
+		  {
+			  $_GET['page']=1;
+			
+		  }
+		
+		  $sql = "SELECT COUNT(ItemId) FROM Item_Master where AvalibiltyStatus='Y' and CategoryId='".$_GET['CategoryId']."'";  
+          $rs_result = mysql_query($sql);  
+          $row= mysql_fetch_row($rs_result);  
+          $total_records = $row[0];  
+          $total_pages = ceil($total_records / $limit);  
+		
+          echo "<ul class='pagination'>";  
+           
+		  if($_GET['page']>1 && $_GET['page']<=$total_pages)
+		  {
+			echo "<li><a href = 'products.php?page=".($_GET['page'] - 1)."&CategoryId=".$_GET['CategoryId']."'> Prev </a></li>";  
+		  }
+		  
+		  if($_GET['page']<=$total_pages){
+		   for ($i=1; $i<=$total_pages; $i++) {  
+		     if($i==$_GET['page'])
+             echo "<li class='active'><a href='products.php?page=".$i."&CategoryId=".$_GET['CategoryId']."'>".$i."</a></li>";
+             else
+             echo "<li><a href='products.php?page=".$i."&CategoryId=".$_GET['CategoryId']."'>".$i."</a></li>";			 
+            }
+		  }	
+			
+		   if(($_GET['page']!=1 || $_GET['page']>=1) && $_GET['page']<$total_pages)
+		  {
+			echo "<li class='next'><a href = 'products.php?page=".($_GET['page'] + 1)."&CategoryId=".$_GET['CategoryId']."'> Next </a></li>";  
+		  }
+          echo "</ul>"; 
+		  
+		  include '/Connections/closedb.php';
+		    
 		 }
 		  elseif(isset($_GET['PopStoreId']))
-	       { echo '<h3>'.$row_Recordset7['DealWebsite'].'</h3>';
-	       do 
 	       { 
+		     echo "<div class='features_items'>";
+			 echo '<h2 class="title text-center">'.$row_Recordset7['DealWebsite'].'</h2>';
+	   
+	        //DB Connection
+			include 'Connections/opendb.php';
+         
+			$limit = 12;  
+            if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+            $start_from = ($page-1) * $limit;  
+  
+            $sql = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus,CategoryId FROM item_master where StoreId='".$_GET['PopStoreId']."' and AvalibiltyStatus='Y' ORDER BY item_master.ItemId DESC LIMIT ".$start_from.",".$limit;
+            $rs_result = mysql_query ($sql); 
+			
+	       while ($row = mysql_fetch_assoc($rs_result))  { 
 	      ?>
 			
 			<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="<?php echo $row_Recordset7['Image']; ?>" alt=""   />
-										<h2>Rs. <?php echo $row_Recordset7['Total']; ?></h2>
-										<p><?php echo $row_Recordset7['ItemName']; ?></p>
-										<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+										<img src="<?php echo $row['Image']; ?>" alt=""   />
+										<h2>Rs. <?php echo $row['Total']; ?></h2>
+										<p><?php echo $row['ItemName']; ?></p>
+										<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $row['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 									</div>
-									<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>">
+									<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $row['CategoryId']?>">
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>Rs. <?php echo $row_Recordset7['Total']; ?></h2>
-											<p><?php echo $row_Recordset7['ItemName']; ?></p>
-											<a href="product_details.php?ItemId=<?php echo $row_Recordset7['ItemId']?>&CategoryId=<?php echo $row_Recordset7['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+											<h2>Rs. <?php echo $row['Total']; ?></h2>
+											<p><?php echo $row['ItemName']; ?></p>
+											<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $row['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div>
 									</a>
@@ -235,29 +307,81 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 							</div>
 						</div>
 			
-          <?php } while ($row_Recordset7 = mysql_fetch_assoc($Recordset7));
+          <?php } 
+		  
+		    echo "</div><!--features_items-->";
+		  
+		  if(!isset($_GET['page']))
+		  {
+			  $_GET['page']=1;
+			
+		  }
+		
+		  $sql = "SELECT COUNT(ItemId) FROM Item_Master where AvalibiltyStatus='Y' and StoreId='".$_GET['PopStoreId']."'";  
+          $rs_result = mysql_query($sql);  
+          $row= mysql_fetch_row($rs_result);  
+          $total_records = $row[0];  
+          $total_pages = ceil($total_records / $limit);  
+		
+          echo "<ul class='pagination'>";  
+           
+		  if($_GET['page']>1 && $_GET['page']<=$total_pages)
+		  {
+			echo "<li><a href = 'products.php?page=".($_GET['page'] - 1)."&PopStoreId=".$_GET['PopStoreId']."'> Prev </a></li>";  
+		  }
+		  
+		  if($_GET['page']<=$total_pages){
+		   for ($i=1; $i<=$total_pages; $i++) {  
+		     if($i==$_GET['page'])
+             echo "<li class='active'><a href='products.php?page=".$i."&PopStoreId=".$_GET['PopStoreId']."'>".$i."</a></li>";
+             else
+             echo "<li><a href='products.php?page=".$i."&PopStoreId=".$_GET['PopStoreId']."'>".$i."</a></li>";			 
+            }
+		  }	
+			
+		   if(($_GET['page']!=1 || $_GET['page']>=1) && $_GET['page']<$total_pages)
+		  {
+			echo "<li class='next'><a href = 'products.php?page=".($_GET['page'] + 1)."&PopStoreId=".$_GET['PopStoreId']."'> Next </a></li>";  
+		  }
+          echo "</ul>"; 
+		  
+		  include '/Connections/closedb.php';
+		    
+		  
 		 }
 		 
 		 else
 		 { 
-		  do 
-	      { 
+		     echo "<div class='features_items'>";
+			 echo '<h2 class="title text-center">Latest Offers</h2>';
+	   
+	        //DB Connection
+			include 'Connections/opendb.php';
+         
+			$limit = 12;  
+            if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+            $start_from = ($page-1) * $limit;  
+  
+            $sql = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,AvalibiltyStatus,CategoryId FROM item_master where AvalibiltyStatus='Y' ORDER BY item_master.ItemId DESC LIMIT ".$start_from.",".$limit;
+            $rs_result = mysql_query ($sql); 
+			
+	       while ($row = mysql_fetch_assoc($rs_result))  { 
 	       ?>		   
 		   <div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="<?php echo $row_Recordset4['Image']; ?>" alt=""  />
-										<h2>Rs. <?php echo $row_Recordset4['Total']; ?></h2>
-										<p><?php echo $row_Recordset4['ItemName']; ?></p>
-										<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+										<img src="<?php echo $row['Image']; ?>" alt=""  />
+										<h2>Rs. <?php echo $row['Total']; ?></h2>
+										<p><?php echo $row['ItemName']; ?></p>
+										<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $row['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 									</div>
-									<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>">
+									<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $row['CategoryId']?>">
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<h2>Rs. <?php echo $row_Recordset4['Total']; ?></h2>
-											<p><?php echo $row_Recordset4['ItemName']; ?></p>
-											<a href="product_details.php?ItemId=<?php echo $row_Recordset4['ItemId']?>&CategoryId=<?php echo $row_Recordset4['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
+											<h2>Rs. <?php echo $row['Total']; ?></h2>
+											<p><?php echo $row['ItemName']; ?></p>
+											<a href="product_details.php?ItemId=<?php echo $row['ItemId']?>&CategoryId=<?php echo $row['CategoryId']?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Get Deal</a>
 										</div>
 									</div>
 									</a>
@@ -270,18 +394,50 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 								</div>
 							</div>
 						</div>
-           <?php } while ($row_Recordset4 = mysql_fetch_assoc($Recordset4));
+           <?php }
+		   
+		   		echo "</div><!--features_items-->";
+		  
+		       if(!isset($_GET['page']))
+		       {
+			    $_GET['page']=1;
+			
+		       }
+		
+		      $sql = "SELECT COUNT(ItemId) FROM Item_Master where AvalibiltyStatus='Y'";  
+              $rs_result = mysql_query($sql);  
+              $row= mysql_fetch_row($rs_result);  
+              $total_records = $row[0];  
+              $total_pages = ceil($total_records / $limit);  
+		
+              echo "<ul class='pagination'>";  
+           
+		      if($_GET['page']>1 && $_GET['page']<=$total_pages)
+		      {
+			   echo "<li><a href = 'products.php?page=".($_GET['page'] - 1)."'> Prev </a></li>";  
+		      }
+		  
+		     if($_GET['page']<=$total_pages){
+		     for ($i=1; $i<=$total_pages; $i++) {  
+		     if($i==$_GET['page'])
+             echo "<li class='active'><a href='products.php?page=".$i."'>".$i."</a></li>";
+             else
+             echo "<li><a href='products.php?page=".$i."'>".$i."</a></li>";			 
+            }
+		   }	
+			
+		    if(($_GET['page']!=1 || $_GET['page']>=1) && $_GET['page']<$total_pages)
+		    {
+			 echo "<li class='next'><a href = 'products.php?page=".($_GET['page'] + 1)."'> Next </a></li>";  
+			 //echo "<li class='seemore'>Show more</li>";
+		    }
+            echo "</ul>"; 
+		  
+		    include '/Connections/closedb.php';
 		 }
           
          ?>
-						
-						<ul class="pagination" style="display:none">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>
-					</div><!--features_items-->
+					
 				</div>
 			</div>
 		</div>
@@ -298,3 +454,4 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
     <script src="js/main.js"></script>
 </body>
 </html>
+

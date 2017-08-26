@@ -39,12 +39,12 @@ if (isset($_GET['CategoryId'])) {
   $colname_Recordset1 = $_GET['CategoryId'];
 }
              
-			 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,DealWebsite FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y' ORDER BY item_master.ItemId DESC", GetSQLValueString($colname_Recordset1, "int"));
+			 $query_Recordset1 = sprintf("SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,DealWebsite FROM item_master WHERE CategoryId = %s and AvalibiltyStatus='Y' ORDER BY item_master.ItemId DESC LIMIT 0,30", GetSQLValueString($colname_Recordset1, "int"));
 			 $Recordset1 = mysql_query($query_Recordset1, $shop) or die(mysql_error());
 			 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
 			 $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 			 
-             $query_Recordset2 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,DealWebsite FROM item_master where FeaturedPrd='Y' and AvalibiltyStatus='Y' ORDER BY item_master.ItemId DESC";
+             $query_Recordset2 = "SELECT ItemName,ItemId,`Description`, `Size`, Image, Price, Discount, Total,DealWebsite FROM item_master where FeaturedPrd='Y' and AvalibiltyStatus='Y' ORDER BY item_master.ItemId DESC LIMIT 0,30";
              $Recordset2 = mysql_query($query_Recordset2, $shop) or die(mysql_error());
              $row_Recordset2 = mysql_fetch_assoc($Recordset2);
              $totalRows_Recordset2 = mysql_num_rows($Recordset2);
