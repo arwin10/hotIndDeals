@@ -1,3 +1,17 @@
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+     $(document).ready(function(){
+	 $('#accordian div:gt(6):not(:last-child)').hide();
+	  $('#more').click(function(){
+      $('#accordian').children().show();
+	    $('#more').hide();
+      });
+	  
+	 });
+	
+    </script>
+</head>
 <header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">

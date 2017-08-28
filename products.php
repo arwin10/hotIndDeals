@@ -115,9 +115,10 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
      $(document).ready(function(){
 	  $(".pagination li:gt(10):not(:last-child)").hide();
       $('.next').click(function(){
-      $("li:gt(10)").show();
-      });
+      $(".pagination li:gt(10)").show();
+      });	  
 	 });
+	
     </script>
 
 </head><!--/head-->
@@ -130,7 +131,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	
 	<section id="advertisement">
 		<div class="container">
-			<img src="images/shop/banner.jpg" alt="" />
+			<img src="http://martjackstorage.azureedge.net/in-resources/e0af9c17-737e-4a5e-9202-38a44fb838d3/Images/userimages/Home%20Banner/offerbannernwe.jpg" alt="" />
 		</div>
 	</section>
 	
@@ -165,7 +166,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 						</div><!--/price-range-->
 						
 						<div class="shipping text-center"><!--shipping-->
-							<a href="products.php"><img src="images/home/latest-deals-offer-image.jpg" alt="" /></a>
+							<a href="products.php"><img src="http://dailyshopper.bargains/wp-content/uploads/2015/05/dailydeals.png" alt="" /></a>
 						</div><!--/shipping-->
 						
 					</div>
@@ -183,7 +184,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	        //DB Connection
 			include 'Connections/opendb.php';
          
-			$limit = 12;  
+			$limit = 6;  
             if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
             $start_from = ($page-1) * $limit;  
   
@@ -269,7 +270,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	        //DB Connection
 			include 'Connections/opendb.php';
          
-			$limit = 12;  
+			$limit = 6;  
             if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
             $start_from = ($page-1) * $limit;  
   
@@ -358,7 +359,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	        //DB Connection
 			include 'Connections/opendb.php';
          
-			$limit = 12;  
+			$limit = 6;  
             if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
             $start_from = ($page-1) * $limit;  
   

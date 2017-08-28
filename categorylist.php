@@ -22,7 +22,7 @@
 			
 			     
 							
-							<div class="panel panel-default">
+							<div class="panel panel-default" id="catname">
 								<div class="panel-heading">
 									<h4 class="panel-title"><a href="products.php?CategoryId=<?php echo $Id;?>"><?php echo $CategoryName?></a></h4>
 								</div>
@@ -35,6 +35,12 @@
             $records = mysql_num_rows($result);
 			
             ?>
+			    <div class="panel panel-default" id="catname">
+								<div class="panel-heading">
+									<h4 class="panel-title" id="more"><a id="more"><u>See More..</u></a></h4>
+								</div>
+							</div>
+			
             <?php
            include 'Connections/closedb.php';
             ?>			
