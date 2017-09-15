@@ -159,7 +159,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
-									<a href="https://goo.gl/yNgqbm" target="_blank"><img src="https://s3.amazonaws.com/gp.cdn.images/assets/deals/-1501821190.jpg" class="girl img-responsive" alt="" /></a>
+									<a href="https://goo.gl/5R1DSN" target="_blank"><img src="https://i.gadgets360cdn.com/large/amazon_great_india_sale_story_1505381887703.jpg?output-quality=80" class="girl img-responsive" alt="" /></a>
 									<img src="images/home/icon3.jpg"  class="pricing" alt=""  style="display:none"/>
 								</div>
 							</div>
@@ -171,7 +171,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
-									<a href="https://goo.gl/eBSNxi" target="_blank"><img src="https://earningkart.in/wp-content/uploads/2017/08/Screenshot_2017-08-05-02-22-48-1.png" class="girl img-responsive" alt="" /></a>
+									<a href="https://goo.gl/VRjNoq" target="_blank"><img src="http://rechargetricks.in/wp-content/uploads/2017/09/21371279_1668122219866982_637880284206318826_n-450x263.jpg" class="girl img-responsive" alt="" /></a>
 									<img src="images/home/icon2.png"  class="pricing" alt="" style="display:none"/>
 								</div>
 							</div>
@@ -184,7 +184,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
-									<a href="https://paytm.com/shop/h/home" target="_blank"><img src="https://i.gadgets360cdn.com/large/paytmsale_main_1502190579196.jpg?output-quality=80" class="girl img-responsive" alt="" /></a>
+									<a href="https://paytm.com/shop/h/home" target="_blank"><img src="https://cdn.mobikart.co/uploads/2016/11/01-Paytm-Big-Cashback-Sale-Irresistible-Deals-and-Offer-702x336.jpg" class="girl img-responsive" alt="" /></a>
 									<img src="images/home/icon1.jpg" class="pricing" alt="" style="display:none"/>
 								</div>
 							</div>
