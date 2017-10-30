@@ -184,7 +184,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	        //DB Connection
 			include 'Connections/opendb.php';
          
-			$limit = 6;  
+			$limit = 15;  
             if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
             $start_from = ($page-1) * $limit;  
   
@@ -270,7 +270,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	        //DB Connection
 			include 'Connections/opendb.php';
          
-			$limit = 6;  
+			$limit = 15;  
             if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
             $start_from = ($page-1) * $limit;  
   
@@ -359,7 +359,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 	        //DB Connection
 			include 'Connections/opendb.php';
          
-			$limit = 6;  
+			$limit = 15;  
             if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
             $start_from = ($page-1) * $limit;  
   
