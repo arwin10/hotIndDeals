@@ -159,7 +159,7 @@ $totalRows_Recordset5 = mysql_num_rows($Recordset5);
 									<a href="products.php"><button type="button" class="btn btn-default get">Latest Deals</button></a>
 								</div>
 								<div class="col-sm-6">
-									<a href="https://goo.gl/5R1DSN" target="_blank"><img src="https://i.gadgets360cdn.com/large/amazon_great_india_sale_story_1505381887703.jpg?output-quality=80" class="girl img-responsive" alt="" /></a>
+									<a href="https://goo.gl/5jcxHE" target="_blank"><img src="http://images.indianexpress.com/2018/01/amazon-great-indian-sale-main.jpg" class="girl img-responsive" alt="" /></a>
 									<img src="images/home/icon3.jpg"  class="pricing" alt=""  style="display:none"/>
 								</div>
 							</div>
